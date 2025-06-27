@@ -1,29 +1,91 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&display=swap');
+
+/* Color Palette */
+:root {
+  --sage-green: #b7c9a8;
+  --sage-green-dark: #8fa382;
+  --blush: #f7d6d6;
+  --blush-dark: #eeb7b7;
+  --gold: #b48a3c;
+  --offwhite: #fff8f0;
+  --text-dark: #3a3a3a;
+}
+
+/* Block for section title and row grouping */
+.family-tree-section-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
 /* Elegant Family Tree Section */
 .wedding-family-tree {
   width: 100vw;
   min-height: 100vh;
-  background: #fff8f0;
+  background: linear-gradient(135deg, var(--offwhite) 60%, var(--blush) 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 64px 0 48px 0;
   box-sizing: border-box;
-  border-bottom: 2px solid #f7c873;
+  border-bottom: 2px solid var(--sage-green);
 }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: var(--offwhite);
+  color: var(--text-dark);
+  letter-spacing: 0.01em;
+}
+
 .family-tree-title {
   font-family: 'Playfair Display', serif;
   font-size: 2.8rem;
-  color: #b48a3c;
+  color: var(--sage-green-dark);
   margin-bottom: 36px;
   letter-spacing: 1px;
 }
+
+.family-tree-section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: var(--sage-green-dark);
+  margin: 38px 0 18px 0;
+  text-align: center;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 1.5px;
+  background: none;
+  border-radius: 0;
+  padding: 0 0 10px 0;
+  box-shadow: none;
+  display: block;
+  border-bottom: 3px solid var(--sage-green);
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 0 2px 8px rgba(183,201,168,0.10);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.family-tree-section-title:hover, .family-tree-section-title:focus {
+  color: var(--blush-dark);
+  border-color: var(--blush-dark);
+}
+
 .family-tree-rows {
   display: flex;
   flex-direction: column;
   gap: 36px;
   align-items: center;
 }
+
 .family-tree-row {
   display: flex;
   gap: 32px;
@@ -31,6 +93,7 @@
   align-items: flex-end;
   flex-wrap: wrap;
 }
+
 .tree-person {
   display: flex;
   flex-direction: column;
@@ -40,50 +103,69 @@
   position: relative;
   transition: transform 0.18s, box-shadow 0.18s;
 }
+
 .tree-person img {
   border-radius: 50%;
-  border: 10px solid #f7c873;
+  border: 10px solid var(--sage-green);
   background: #fff;
-  box-shadow: 0 12px 48px rgba(180,138,60,0.18), 0 3px 16px rgba(0,0,0,0.13);
+  box-shadow: 0 12px 48px rgba(183,201,168,0.18), 0 3px 16px rgba(183,201,168,0.13);
   width: 220px;
   height: 220px;
   object-fit: cover;
   transition: border-color 0.2s, transform 0.18s, box-shadow 0.18s;
 }
+
+/* Larger images for couple */
+.couple-person img {
+  width: 280px;
+  height: 280px;
+  border-width: 14px;
+  border-color: var(--blush-dark);
+  z-index: 2;
+  background: var(--blush);
+}
+
+/* Name labels for tree persons */
 .tree-person[data-name]::after {
   content: attr(data-name);
-  position: absolute;
-  left: 50%;
-  bottom: -38px;
-  transform: translateX(-50%);
-  background: #fff8f0;
-  color: #b48a3c;
-  font-size: 1.08rem;
-  padding: 6px 16px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(180,138,60,0.08);
-  opacity: 0;
+  position: static;
+  display: block;
+  margin-top: 18px;
+  background: none;
+  color: var(--gold);
+  font-size: 1.25rem;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  opacity: 1;
   pointer-events: none;
-  white-space: nowrap;
-  transition: opacity 0.2s;
+  white-space: normal;
+  transition: color 0.2s;
   z-index: 20;
-  border: 1.5px solid #f7c873;
+  border: none;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
+
 .tree-person:hover[data-name]::after,
 .tree-person:focus[data-name]::after {
-  opacity: 1;
+  color: var(--sage-green-dark);
 }
+
 .tree-person:hover img,
 .tree-person:focus img {
-  border-color: #e47a2e;
+  border-color: var(--blush-dark);
   transform: scale(1.13) rotate(-2deg);
-  box-shadow: 0 8px 32px rgba(180,138,60,0.18), 0 2px 12px rgba(0,0,0,0.10);
+  box-shadow: 0 8px 32px rgba(238,183,183,0.18), 0 2px 12px rgba(183,201,168,0.10);
 }
+
 .tree-person:active img {
   transform: scale(1.08) rotate(1deg);
-  border-color: #b48a3c;
+  border-color: var(--gold);
 }
-/* Family Tree Overlay Styles removed to prevent duplicate/conflicting rules */
+
 /* Reset and base styles */
 html, body {
   margin: 0;
@@ -242,16 +324,59 @@ iframe#main-film {
   background: #fff;
 }
 
-@media (max-width: 600px) {
-  #intro-video,
-  .video-iframe-container,
-  iframe#main-film {
-    width: 100vw !important;
-    height: 100vh !important;
-    max-width: 100vw !important;
-    max-height: 100vh !important;
+@media (max-width: 900px) {
+  .tree-person img {
+    width: 120px;
+    height: 120px;
+    border-width: 6px;
+  }
+  .couple-person img {
+    width: 160px;
+    height: 160px;
+    border-width: 8px;
+  }
+  .tree-person[data-name]::after {
+    font-size: 1rem;
+    margin-top: 12px;
+  }
+  .family-tree-row {
+    gap: 18px;
+  }
+  .family-tree-section-title {
+    font-size: 1.2rem;
+    margin: 18px 0 8px 0;
+    padding: 0 0 6px 0;
+    border-bottom-width: 2px;
   }
 }
+
+@media (max-width: 600px) {
+  .tree-person img {
+    width: 70px;
+    height: 70px;
+    border-width: 3px;
+  }
+  .couple-person img {
+    width: 90px;
+    height: 90px;
+    border-width: 4px;
+  }
+  .tree-person[data-name]::after {
+    font-size: 0.85rem;
+    margin-top: 7px;
+  }
+  .family-tree-row {
+    gap: 8px;
+  }
+  .family-tree-section-title {
+    font-size: 1rem;
+    margin: 10px 0 4px 0;
+    padding: 0 0 4px 0;
+    border-bottom-width: 2px;
+  }
+}
+
+/* Close modal button */
 #close-modal {
   position: absolute;
   top: 18px;
@@ -267,6 +392,8 @@ iframe#main-film {
 #close-modal:hover {
   color: #e47a2e;
 }
+
+/* Video modal active/inactive states */
 #video-modal:not(.active) {
   opacity: 0;
   pointer-events: none;
