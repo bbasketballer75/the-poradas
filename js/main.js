@@ -46,59 +46,37 @@ window.addEventListener('DOMContentLoaded', () => {
   const introWrapper = document.getElementById('intro-wrapper');
   const introVideo = document.getElementById('intro-video');
   const skipBtn = document.getElementById('skip-intro');
+  const scrollVideo = document.getElementById('scroll-video');
   let revealed = false;
+  if (scrollVideo) {
+    scrollVideo.pause();
+    scrollVideo.currentTime = 0;
+  }
   if (skipBtn) {
-    console.log('Skip button found');
     setTimeout(() => {
       skipBtn.classList.add('visible');
-      console.log('Skip button made visible');
     }, 5000);
-  } else {
-    console.warn('Skip button NOT found');
+    skipBtn.addEventListener('click', () => {
+      revealContent();
+    });
   }
   function revealContent() {
     if (revealed) return;
     revealed = true;
-    if (introWrapper) {
-      introWrapper.style.transition = 'opacity 0.6s';
-      introWrapper.style.opacity = 0;
+    if (introWrapper) introWrapper.style.display = 'none';
+    if (scrollVideo) {
+      scrollVideo.play();
     }
-    setTimeout(() => {
-      if (introWrapper) introWrapper.style.display = 'none';
-      document.body.style.overflow = 'auto';
-      // Scroll to the scroll video section
-      const scrollSection = document.getElementById('scroll-section');
-      if (scrollSection) {
-        scrollSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 600);
+    document.body.style.overflow = 'auto';
+    // Scroll to the scroll video section
+    const scrollSection = document.getElementById('scroll-section');
+    if (scrollSection) {
+      scrollSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
-// --- Scroll Video Auto Play Logic ---
-window.addEventListener('DOMContentLoaded', () => {
-  const scrollVideo = document.getElementById('scroll-video');
-  if (scrollVideo) {
-    // Try to play immediately (may require muted for autoplay)
-    scrollVideo.play().catch(() => {});
-    scrollVideo.addEventListener('ended', function() {
-      // Scroll to family tree after video ends
-      const familyTree = document.getElementById('family-tree');
-      if (familyTree) {
-        familyTree.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
+  if (introVideo) {
+    introVideo.addEventListener('ended', revealContent);
   }
-});
-  document.body.style.overflow = 'hidden';
-  if (skipBtn) {
-    skipBtn.style.pointerEvents = 'auto';
-    skipBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      console.log('Skip Intro button clicked');
-      revealContent();
-    });
-  }
-  if (introVideo) introVideo.addEventListener('ended', revealContent);
   setTimeout(revealContent, 60000);
 
   // --- Main Video logic (manual play on click) ---
