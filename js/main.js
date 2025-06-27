@@ -89,45 +89,16 @@ window.addEventListener('DOMContentLoaded', () => {
   if (introVideo) introVideo.addEventListener('ended', revealContent);
   setTimeout(revealContent, 60000);
 
-  // --- Main Video logic (auto fullscreen after intro) ---
-  const modal = document.getElementById('video-modal');
-  const closeBtn = document.getElementById('close-modal');
-  function showMainVideo() {
-    if (modal) modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    // Show overlay gif if not already shown
-    const overlay = document.getElementById('main-gif-overlay');
-    if (overlay) overlay.style.display = 'flex';
-    // Pause video until overlay is clicked
-    const iframe = document.getElementById('main-film');
-    if (iframe) {
-      iframe.contentWindow && iframe.contentWindow.postMessage({event: 'pause'}, '*');
-    }
+  // --- Main Video logic (manual play on click) ---
+  const playOverlay = document.getElementById('main-film-overlay');
+  const playBtn = document.getElementById('play-main-film');
+  const mainFilm = document.getElementById('main-film');
+  if (playBtn && playOverlay && mainFilm) {
+    playBtn.addEventListener('click', function() {
+      playOverlay.style.opacity = 0;
+      setTimeout(() => { playOverlay.style.display = 'none'; }, 400);
+      // Post message to Cloudflare iframe to play
+      mainFilm.contentWindow && mainFilm.contentWindow.postMessage({event: 'play'}, '*');
+    });
   }
-
-  // Overlay click: hide overlay, unmute and play video
-  // Only click on the gif (not the family tree) will start the video
-  document.addEventListener('click', function(e) {
-    const overlay = document.getElementById('main-gif-overlay');
-    if (overlay && e.target.tagName === 'VIDEO' && e.target.id === 'overlay-video') {
-      overlay.style.display = 'none';
-      const iframe = document.getElementById('main-film');
-      if (iframe) {
-        iframe.contentWindow && iframe.contentWindow.postMessage({event: 'play'}, '*');
-        iframe.contentWindow && iframe.contentWindow.postMessage({event: 'setMuted', value: false}, '*');
-        iframe.contentWindow && iframe.contentWindow.postMessage({event: 'setCaptions', value: true}, '*');
-        iframe.contentWindow && iframe.contentWindow.postMessage({event: 'setQuality', value: 'highest'}, '*');
-      }
-    }
-  });
-  if (closeBtn) closeBtn.addEventListener('click', () => {
-    if (modal) modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-    // Pause Cloudflare Stream video by reloading iframe
-    const iframe = modal.querySelector('iframe');
-    if (iframe) {
-      const src = iframe.src;
-      iframe.src = src;
-    }
-  });
 });
