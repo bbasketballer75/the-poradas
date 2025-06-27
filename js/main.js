@@ -1,48 +1,45 @@
 console.log('main.js loaded');
 
 // --- Modal logic with YouTube API ---
-// ...existing code...
-
-  // --- Modal logic with YouTube API ---
-  const openBtn = document.getElementById('open-modal');
-  const modal = document.getElementById('video-modal');
-  const closeBtn = document.getElementById('close-modal');
-  const chapterBtns = document.querySelectorAll('.chapter-jump');
-  let ytPlayer;
-  function loadYouTubeAPI(callback) {
-    if (window.YT && window.YT.Player) {
-      callback();
-      return;
-    }
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    document.body.appendChild(tag);
-    window.onYouTubeIframeAPIReady = callback;
+const openBtn = document.getElementById('open-modal');
+const modal = document.getElementById('video-modal');
+const closeBtn = document.getElementById('close-modal');
+const chapterBtns = document.querySelectorAll('.chapter-jump');
+let ytPlayer;
+function loadYouTubeAPI(callback) {
+  if (window.YT && window.YT.Player) {
+    callback();
+    return;
   }
-  function onYouTubeReady() {
-    if (!ytPlayer) {
-      ytPlayer = new YT.Player('modal-player');
-    }
+  const tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  document.body.appendChild(tag);
+  window.onYouTubeIframeAPIReady = callback;
+}
+function onYouTubeReady() {
+  if (!ytPlayer) {
+    ytPlayer = new YT.Player('modal-player');
   }
-  if (openBtn) openBtn.addEventListener('click', () => {
-    if (modal) modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    loadYouTubeAPI(onYouTubeReady);
+}
+if (openBtn) openBtn.addEventListener('click', () => {
+  if (modal) modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  loadYouTubeAPI(onYouTubeReady);
+});
+if (closeBtn) closeBtn.addEventListener('click', () => {
+  if (modal) modal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+  if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
+});
+chapterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const t = parseFloat(btn.getAttribute('data-time'));
+    if (ytPlayer && ytPlayer.seekTo) {
+      ytPlayer.seekTo(t, true);
+      ytPlayer.playVideo && ytPlayer.playVideo();
+    }
   });
-  if (closeBtn) closeBtn.addEventListener('click', () => {
-    if (modal) modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-    if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
-  });
-  chapterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const t = parseFloat(btn.getAttribute('data-time'));
-      if (ytPlayer && ytPlayer.seekTo) {
-        ytPlayer.seekTo(t, true);
-        ytPlayer.playVideo && ytPlayer.playVideo();
-      }
-    });
-  });
+});
 
 window.addEventListener('DOMContentLoaded', () => {
   // --- Intro Video Logic ---
