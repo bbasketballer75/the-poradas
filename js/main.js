@@ -58,7 +58,7 @@
       }
     });
   });
-});
+}
 window.addEventListener('DOMContentLoaded', () => {
   // --- Intro Video Logic ---
   const introWrapper = document.getElementById('intro-wrapper');
