@@ -16,16 +16,13 @@
     <button id="skip-intro">Skip Intro</button>
   </div>
 
-  <!-- Main Section -->
-  <main id="main-section">
-    <button id="open-modal" class="watch-btn">▶️ Watch the Full Wedding Film</button>
-  </main>
 
-  <!-- Modal for Main Video (Cloudflare Stream) -->
+  <!-- Main Video (Cloudflare Stream, fullscreen overlay) -->
   <div id="video-modal" aria-modal="true" role="dialog" tabindex="-1">
     <div id="video-wrapper">
-      <div style="position: relative; padding-top: 56.25%; width: 100%; max-width: 900px; margin: 0 auto;">
+      <div style="position: relative; padding-top: 56.25%; width: 100vw; height: 100vh; max-width: none; margin: 0;">
         <iframe
+          id="main-film"
           src="https://customer-udvejv26dg5j5jw5.cloudflarestream.com/270e267a89770768b595784b97727120/iframe?poster=https%3A%2F%2Fcustomer-udvejv26dg5j5jw5.cloudflarestream.com%2F270e267a89770768b595784b97727120%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
           loading="lazy"
           style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"

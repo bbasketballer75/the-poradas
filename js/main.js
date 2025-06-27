@@ -58,7 +58,7 @@
       }
     });
   });
-}
+
 window.addEventListener('DOMContentLoaded', () => {
   // --- Intro Video Logic ---
   const introWrapper = document.getElementById('intro-wrapper');
@@ -80,14 +80,14 @@ window.addEventListener('DOMContentLoaded', () => {
   if (introVideo) introVideo.addEventListener('ended', revealContent);
   setTimeout(revealContent, 60000);
 
-  // --- Modal logic for Cloudflare Stream ---
-  const openBtn = document.getElementById('open-modal');
+  // --- Main Video logic (auto fullscreen after intro) ---
   const modal = document.getElementById('video-modal');
   const closeBtn = document.getElementById('close-modal');
-  if (openBtn) openBtn.addEventListener('click', () => {
+  function showMainVideo() {
     if (modal) modal.classList.add('active');
     document.body.style.overflow = 'hidden';
-  });
+    // Optionally, autoplay the video if possible (Cloudflare Stream will usually autoplay)
+  }
   if (closeBtn) closeBtn.addEventListener('click', () => {
     if (modal) modal.classList.remove('active');
     document.body.style.overflow = 'auto';
@@ -98,4 +98,7 @@ window.addEventListener('DOMContentLoaded', () => {
       iframe.src = src;
     }
   });
+  // Show main video after intro is finished or skipped
+  if (skipBtn) skipBtn.addEventListener('click', showMainVideo);
+  if (introVideo) introVideo.addEventListener('ended', showMainVideo);
 });
