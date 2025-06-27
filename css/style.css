@@ -123,29 +123,9 @@ html, body {
 #close-modal:hover {
   color: #e47a2e;
 }
-#modal-chapters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-  margin-top: 24px;
-  margin-bottom: 0;
-}
-#modal-chapters .chapter-jump {
-  background: #f7c873;
-  color: #222;
-  border: none;
-  border-radius: 6px;
-  padding: 10px 22px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s, transform 0.15s;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-#modal-chapters .chapter-jump:hover {
-  background: #e47a2e;
-  color: #fff;
-  transform: translateY(-2px) scale(1.04);
+#video-modal:not(.active) {
+  opacity: 0;
+  pointer-events: none;
 }
 #video-modal:not(.active) {
   opacity: 0;

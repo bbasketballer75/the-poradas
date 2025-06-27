@@ -1,4 +1,3 @@
-window.addEventListener('DOMContentLoaded', () => {
   // --- Intro Video Logic ---
   const introWrapper = document.getElementById('intro-wrapper');
   const introVideo = document.getElementById('intro-video');
@@ -58,5 +57,45 @@ window.addEventListener('DOMContentLoaded', () => {
         ytPlayer.playVideo && ytPlayer.playVideo();
       }
     });
+  });
+});
+window.addEventListener('DOMContentLoaded', () => {
+  // --- Intro Video Logic ---
+  const introWrapper = document.getElementById('intro-wrapper');
+  const introVideo = document.getElementById('intro-video');
+  const skipBtn = document.getElementById('skip-intro');
+  let revealed = false;
+  if (skipBtn) setTimeout(() => skipBtn.classList.add('visible'), 3000);
+  function revealContent() {
+    if (revealed) return;
+    revealed = true;
+    if (introWrapper) introWrapper.style.opacity = 0;
+    setTimeout(() => {
+      if (introWrapper) introWrapper.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }, 600);
+  }
+  document.body.style.overflow = 'hidden';
+  if (skipBtn) skipBtn.addEventListener('click', revealContent);
+  if (introVideo) introVideo.addEventListener('ended', revealContent);
+  setTimeout(revealContent, 60000);
+
+  // --- Modal logic for Cloudflare Stream ---
+  const openBtn = document.getElementById('open-modal');
+  const modal = document.getElementById('video-modal');
+  const closeBtn = document.getElementById('close-modal');
+  if (openBtn) openBtn.addEventListener('click', () => {
+    if (modal) modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+  if (closeBtn) closeBtn.addEventListener('click', () => {
+    if (modal) modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    // Pause Cloudflare Stream video by reloading iframe
+    const iframe = modal.querySelector('iframe');
+    if (iframe) {
+      const src = iframe.src;
+      iframe.src = src;
+    }
   });
 });
