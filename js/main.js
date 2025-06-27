@@ -1,3 +1,4 @@
+console.log('main.js loaded');
   // ...existing code...
 
   // --- Modal logic with YouTube API ---
