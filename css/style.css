@@ -1,3 +1,50 @@
+/* Family Tree Overlay Styles */
+.tree-person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 4px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.15s;
+}
+.tree-person img {
+  border-radius: 50%;
+  border: 2px solid #f7c873;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  transition: border-color 0.2s;
+}
+.tree-person[data-name]::after {
+  content: attr(data-name);
+  position: absolute;
+  left: 50%;
+  bottom: -28px;
+  transform: translateX(-50%);
+  background: #fff;
+  color: #222;
+  font-size: 0.95rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+  z-index: 20;
+}
+.tree-person:hover[data-name]::after,
+.tree-person:focus[data-name]::after {
+  opacity: 1;
+}
+.tree-person:hover img,
+.tree-person:focus img {
+  border-color: #e47a2e;
+  transform: scale(1.08);
+}
 /* Reset and base styles */
 html, body {
   margin: 0;

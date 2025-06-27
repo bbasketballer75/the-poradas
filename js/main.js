@@ -86,25 +86,24 @@ window.addEventListener('DOMContentLoaded', () => {
   function showMainVideo() {
     if (modal) modal.classList.add('active');
     document.body.style.overflow = 'hidden';
-    // Show overlay gif if not already shown
+    // Show overlay gif/family tree if not already shown
     const overlay = document.getElementById('main-gif-overlay');
-    if (overlay) overlay.style.display = '';
+    if (overlay) overlay.style.display = 'flex';
     // Pause video until overlay is clicked
     const iframe = document.getElementById('main-film');
     if (iframe) {
-      // Ensure video is paused and muted initially
       iframe.contentWindow && iframe.contentWindow.postMessage({event: 'pause'}, '*');
     }
   }
 
   // Overlay click: hide overlay, unmute and play video
+  // Only click on the gif (not the family tree) will start the video
   document.addEventListener('click', function(e) {
     const overlay = document.getElementById('main-gif-overlay');
-    if (overlay && e.target === overlay) {
+    if (overlay && e.target.tagName === 'IMG' && e.target.parentElement === overlay) {
       overlay.style.display = 'none';
       const iframe = document.getElementById('main-film');
       if (iframe) {
-        // Cloudflare Stream postMessage API: play, unmute, captions, quality
         iframe.contentWindow && iframe.contentWindow.postMessage({event: 'play'}, '*');
         iframe.contentWindow && iframe.contentWindow.postMessage({event: 'setMuted', value: false}, '*');
         iframe.contentWindow && iframe.contentWindow.postMessage({event: 'setCaptions', value: true}, '*');
