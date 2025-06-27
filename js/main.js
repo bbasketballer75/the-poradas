@@ -66,13 +66,28 @@ window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       if (introWrapper) introWrapper.style.display = 'none';
       document.body.style.overflow = 'auto';
-      // Scroll to the overlay video section
-      const overlaySection = document.getElementById('overlay-section');
-      if (overlaySection) {
-        overlaySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Scroll to the scroll video section
+      const scrollSection = document.getElementById('scroll-section');
+      if (scrollSection) {
+        scrollSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }, 600);
   }
+// --- Scroll Video Auto Play Logic ---
+window.addEventListener('DOMContentLoaded', () => {
+  const scrollVideo = document.getElementById('scroll-video');
+  if (scrollVideo) {
+    // Try to play immediately (may require muted for autoplay)
+    scrollVideo.play().catch(() => {});
+    scrollVideo.addEventListener('ended', function() {
+      // Scroll to family tree after video ends
+      const familyTree = document.getElementById('family-tree');
+      if (familyTree) {
+        familyTree.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+});
   document.body.style.overflow = 'hidden';
   if (skipBtn) {
     skipBtn.style.pointerEvents = 'auto';
