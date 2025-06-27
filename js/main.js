@@ -55,8 +55,14 @@ window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       if (introWrapper) introWrapper.style.display = 'none';
       document.body.style.overflow = 'auto';
+      // Show the main video modal
+      showMainVideo();
+      // Smooth scroll to the video modal
+      const modal = document.getElementById('video-modal');
+      if (modal) {
+        modal.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }, 600);
-    showMainVideo();
   }
   document.body.style.overflow = 'hidden';
   if (skipBtn) skipBtn.addEventListener('click', revealContent);
