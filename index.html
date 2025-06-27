@@ -7,35 +7,110 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Fullscreen Intro Video -->
-  <div id="intro-wrapper">
-    <video id="intro-video" autoplay muted playsinline preload="auto">
-      <source src="video/intro.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <button id="skip-intro">Skip Intro</button>
-  </div>
 
-
-  <!-- Main Video (Cloudflare Stream, fullscreen overlay) -->
-  <div id="video-modal" aria-modal="true" role="dialog" tabindex="-1">
-    <div id="video-wrapper">
-      <div class="video-iframe-container">
-        <div id="main-gif-overlay" style="position:relative;width:100vw;height:100vh;z-index:10;display:flex;align-items:center;justify-content:center;flex-direction:column;background:#fff;">
-          <video id="overlay-video" src="video/overlay.mp4" autoplay loop muted playsinline style="width:100vw;height:100vh;object-fit:contain;pointer-events:auto;background:#fff;"></video>
-        </div>
-        <iframe
-          id="main-film"
-          src="https://customer-udvejv26dg5j5jw5.cloudflarestream.com/270e267a89770768b595784b97727120/iframe?autoplay=1&muted=0&preload=true&poster=https%3A%2F%2Fcustomer-udvejv26dg5j5jw5.cloudflarestream.com%2F270e267a89770768b595784b97727120%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&captions=show&quality=highest"
-          loading="eager"
-          style="border: none; position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; max-width: 100vw; max-height: 100vh;"
-          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-          allowfullscreen="true"
-        ></iframe>
-      </div>
-      <button id="close-modal" aria-label="Close">&times;</button>
+  <!-- Fullscreen Intro Video Section -->
+  <section id="intro-section" style="width:100vw; height:100vh; position:relative; overflow:hidden;">
+    <div id="intro-wrapper">
+      <video id="intro-video" autoplay muted playsinline preload="auto" style="width:100vw;height:100vh;object-fit:cover;">
+        <source src="video/intro.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <button id="skip-intro">Skip Intro</button>
     </div>
-  </div>
+  </section>
+
+  <!-- (Removed overlay video section as it's no longer used) -->
+
+  <!-- Family Tree Section (moved above main film) -->
+  <section id="family-tree" class="wedding-family-tree">
+    <h2 class="family-tree-title">Family Tree & Wedding Party</h2>
+    <div class="family-tree-rows">
+      <!-- Parents Row -->
+      <div class="family-tree-row">
+        <div class="tree-person" data-name="Christine">
+          <img src="images/parents/christine.webp" alt="Christine">
+        </div>
+        <div class="tree-person" data-name="Jerame">
+          <img src="images/parents/jerame.webp" alt="Jerame">
+        </div>
+        <div class="tree-person" data-name="Heather">
+          <img src="images/parents/heather.webp" alt="Heather">
+        </div>
+        <div class="tree-person" data-name="Melony">
+          <img src="images/parents/melony.webp" alt="Melony">
+        </div>
+      </div>
+      <!-- Couple Row -->
+      <div class="family-tree-row">
+        <div class="tree-person" data-name="Austin">
+          <img src="images/austin.webp" alt="Austin">
+        </div>
+        <div class="tree-person" data-name="Jordyn">
+          <img src="images/jordyn.webp" alt="Jordyn">
+        </div>
+      </div>
+      <!-- Bridesmaids Row -->
+      <div class="family-tree-row bridesmaids">
+        <div class="tree-person" data-name="Brinnah Porada">
+          <img src="images/wedding-party/bridesmaids/brinnah-porada.webp" alt="Brinnah Porada">
+        </div>
+        <div class="tree-person" data-name="Caitie Helsel">
+          <img src="images/wedding-party/bridesmaids/caitie-helsel.webp" alt="Caitie Helsel">
+        </div>
+        <div class="tree-person" data-name="Emily Aurandt">
+          <img src="images/wedding-party/bridesmaids/emily-aurandt.webp" alt="Emily Aurandt">
+        </div>
+        <div class="tree-person" data-name="Hannah Porada">
+          <img src="images/wedding-party/bridesmaids/hannah-porada.webp" alt="Hannah Porada">
+        </div>
+        <div class="tree-person" data-name="Lexi Ferg">
+          <img src="images/wedding-party/bridesmaids/lexi-ferg.webp" alt="Lexi Ferg">
+        </div>
+        <div class="tree-person" data-name="Maria McCray">
+          <img src="images/wedding-party/bridesmaids/maria-mccray.webp" alt="Maria McCray">
+        </div>
+        <div class="tree-person" data-name="Mic">
+          <img src="images/wedding-party/bridesmaids/mic.webp" alt="Mic">
+        </div>
+      </div>
+      <!-- Groomsmen Row -->
+      <div class="family-tree-row groomsmen">
+        <div class="tree-person" data-name="Alex Molnar">
+          <img src="images/wedding-party/groomsmen/alex-molnar.webp" alt="Alex Molnar">
+        </div>
+        <div class="tree-person" data-name="Brosonan McCray">
+          <img src="images/wedding-party/groomsmen/brosonan-mccray.webp" alt="Brosonan McCray">
+        </div>
+        <div class="tree-person" data-name="Ean Pringle">
+          <img src="images/wedding-party/groomsmen/ean-pringle.webp" alt="Ean Pringle">
+        </div>
+        <div class="tree-person" data-name="Eddie Migut">
+          <img src="images/wedding-party/groomsmen/eddie-migut.webp" alt="Eddie Migut">
+        </div>
+        <div class="tree-person" data-name="Ian Porada">
+          <img src="images/wedding-party/groomsmen/ian-porada.webp" alt="Ian Porada">
+        </div>
+        <div class="tree-person" data-name="Nate Berkebile">
+          <img src="images/wedding-party/groomsmen/nate-berkebile.webp" alt="Nate Berkebile">
+        </div>
+        <div class="tree-person" data-name="Tyler Sharpe">
+          <img src="images/wedding-party/groomsmen/tyler-sharpe.webp" alt="Tyler Sharpe">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Film Video Section (now after family tree) -->
+  <section id="main-film-section" style="width:100vw; height:100vh; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#fff;">
+    <iframe
+      id="main-film"
+      src="https://customer-udvejv26dg5j5jw5.cloudflarestream.com/270e267a89770768b595784b97727120/iframe?autoplay=1&muted=0&preload=true&poster=https%3A%2F%2Fcustomer-udvejv26dg5j5jw5.cloudflarestream.com%2F270e267a89770768b595784b97727120%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&captions=show&quality=highest"
+      loading="eager"
+      style="border: none; width: 100vw; height: 100vh; max-width: 100vw; max-height: 100vh;"
+      allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+      allowfullscreen="true"
+    ></iframe>
+  </section>
 
   <!-- Family Tree Section (inside body, before closing body tag) -->
   <section id="family-tree" style="margin: 48px auto; max-width: 900px; text-align: center;">

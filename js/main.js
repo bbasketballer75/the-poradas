@@ -69,17 +69,11 @@ window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       if (introWrapper) introWrapper.style.display = 'none';
       document.body.style.overflow = 'auto';
-      // Show the main video modal
-      showMainVideo();
-      // Smooth scroll to the video modal (ensure it's visible first)
-      setTimeout(() => {
-        const modal = document.getElementById('video-modal');
-        if (modal) {
-          modal.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        // Also hide the intro overlay immediately after scroll
-        if (introWrapper) introWrapper.style.display = 'none';
-      }, 100);
+      // Scroll to the overlay video section
+      const overlaySection = document.getElementById('overlay-section');
+      if (overlaySection) {
+        overlaySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }, 600);
   }
   document.body.style.overflow = 'hidden';

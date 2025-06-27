@@ -1,3 +1,88 @@
+/* Elegant Family Tree Section */
+.wedding-family-tree {
+  width: 100vw;
+  min-height: 100vh;
+  background: #fff8f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 0 48px 0;
+  box-sizing: border-box;
+  border-bottom: 2px solid #f7c873;
+}
+.family-tree-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  color: #b48a3c;
+  margin-bottom: 36px;
+  letter-spacing: 1px;
+}
+.family-tree-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  align-items: center;
+}
+.family-tree-row {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+.tree-person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 8px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.tree-person img {
+  border-radius: 50%;
+  border: 10px solid #f7c873;
+  background: #fff;
+  box-shadow: 0 12px 48px rgba(180,138,60,0.18), 0 3px 16px rgba(0,0,0,0.13);
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  transition: border-color 0.2s, transform 0.18s, box-shadow 0.18s;
+}
+.tree-person[data-name]::after {
+  content: attr(data-name);
+  position: absolute;
+  left: 50%;
+  bottom: -38px;
+  transform: translateX(-50%);
+  background: #fff8f0;
+  color: #b48a3c;
+  font-size: 1.08rem;
+  padding: 6px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(180,138,60,0.08);
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+  z-index: 20;
+  border: 1.5px solid #f7c873;
+}
+.tree-person:hover[data-name]::after,
+.tree-person:focus[data-name]::after {
+  opacity: 1;
+}
+.tree-person:hover img,
+.tree-person:focus img {
+  border-color: #e47a2e;
+  transform: scale(1.13) rotate(-2deg);
+  box-shadow: 0 8px 32px rgba(180,138,60,0.18), 0 2px 12px rgba(0,0,0,0.10);
+}
+.tree-person:active img {
+  transform: scale(1.08) rotate(1deg);
+  border-color: #b48a3c;
+}
 /* Family Tree Overlay Styles */
 .tree-person {
   display: flex;
@@ -193,16 +278,17 @@ html, body {
 }
 
 /* Family tree section as a full-width, full-height block */
-#family-tree {
+.wedding-family-tree {
   width: 100vw;
   min-height: 100vh;
-  background: #fff;
+  background: #fff8f0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 48px 0;
+  padding: 64px 0 48px 0;
   box-sizing: border-box;
+  border-bottom: 2px solid #f7c873;
 }
 iframe#main-film {
   width: 100vw !important;
