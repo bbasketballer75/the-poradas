@@ -57,11 +57,13 @@ window.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflow = 'auto';
       // Show the main video modal
       showMainVideo();
-      // Smooth scroll to the video modal
-      const modal = document.getElementById('video-modal');
-      if (modal) {
-        modal.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      // Smooth scroll to the video modal (ensure it's visible first)
+      setTimeout(() => {
+        const modal = document.getElementById('video-modal');
+        if (modal) {
+          modal.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
     }, 600);
   }
   document.body.style.overflow = 'hidden';
