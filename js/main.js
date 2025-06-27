@@ -1,22 +1,4 @@
-  // --- Intro Video Logic ---
-  const introWrapper = document.getElementById('intro-wrapper');
-  const introVideo = document.getElementById('intro-video');
-  const skipBtn = document.getElementById('skip-intro');
-  let revealed = false;
-  if (skipBtn) setTimeout(() => skipBtn.classList.add('visible'), 3000);
-  function revealContent() {
-    if (revealed) return;
-    revealed = true;
-    if (introWrapper) introWrapper.style.opacity = 0;
-    setTimeout(() => {
-      if (introWrapper) introWrapper.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }, 600);
-  }
-  document.body.style.overflow = 'hidden';
-  if (skipBtn) skipBtn.addEventListener('click', revealContent);
-  if (introVideo) introVideo.addEventListener('ended', revealContent);
-  setTimeout(revealContent, 60000);
+  // ...existing code...
 
   // --- Modal logic with YouTube API ---
   const openBtn = document.getElementById('open-modal');
@@ -74,6 +56,7 @@ window.addEventListener('DOMContentLoaded', () => {
       if (introWrapper) introWrapper.style.display = 'none';
       document.body.style.overflow = 'auto';
     }, 600);
+    showMainVideo();
   }
   document.body.style.overflow = 'hidden';
   if (skipBtn) skipBtn.addEventListener('click', revealContent);
@@ -121,7 +104,4 @@ window.addEventListener('DOMContentLoaded', () => {
       iframe.src = src;
     }
   });
-  // Show main video after intro is finished or skipped
-  if (skipBtn) skipBtn.addEventListener('click', showMainVideo);
-  if (introVideo) introVideo.addEventListener('ended', showMainVideo);
 });
