@@ -77,6 +77,8 @@ window.addEventListener('DOMContentLoaded', () => {
         if (modal) {
           modal.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+        // Also hide the intro overlay immediately after scroll
+        if (introWrapper) introWrapper.style.display = 'none';
       }, 100);
     }, 600);
   }
@@ -99,7 +101,7 @@ window.addEventListener('DOMContentLoaded', () => {
   function showMainVideo() {
     if (modal) modal.classList.add('active');
     document.body.style.overflow = 'hidden';
-    // Show overlay gif/family tree if not already shown
+    // Show overlay gif if not already shown
     const overlay = document.getElementById('main-gif-overlay');
     if (overlay) overlay.style.display = 'flex';
     // Pause video until overlay is clicked
@@ -113,7 +115,7 @@ window.addEventListener('DOMContentLoaded', () => {
   // Only click on the gif (not the family tree) will start the video
   document.addEventListener('click', function(e) {
     const overlay = document.getElementById('main-gif-overlay');
-    if (overlay && e.target.tagName === 'IMG' && e.target.parentElement === overlay) {
+    if (overlay && e.target.tagName === 'VIDEO' && e.target.id === 'overlay-video') {
       overlay.style.display = 'none';
       const iframe = document.getElementById('main-film');
       if (iframe) {
