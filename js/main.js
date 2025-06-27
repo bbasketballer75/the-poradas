@@ -1,5 +1,7 @@
 console.log('main.js loaded');
-  // ...existing code...
+
+// --- Modal logic with YouTube API ---
+// ...existing code...
 
   // --- Modal logic with YouTube API ---
   const openBtn = document.getElementById('open-modal');
@@ -60,7 +62,10 @@ window.addEventListener('DOMContentLoaded', () => {
   function revealContent() {
     if (revealed) return;
     revealed = true;
-    if (introWrapper) introWrapper.style.opacity = 0;
+    if (introWrapper) {
+      introWrapper.style.transition = 'opacity 0.6s';
+      introWrapper.style.opacity = 0;
+    }
     setTimeout(() => {
       if (introWrapper) introWrapper.style.display = 'none';
       document.body.style.overflow = 'auto';
