@@ -126,6 +126,20 @@ html, body {
   background: #fff;
 }
 
+#main-gif-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
+  z-index: 10;
+  cursor: pointer;
+  background: #fff;
+  display: block;
+  transition: opacity 0.3s;
+}
+
 iframe#main-film {
   width: 100vw !important;
   height: 100vh !important;

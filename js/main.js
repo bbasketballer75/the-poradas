@@ -86,8 +86,32 @@ window.addEventListener('DOMContentLoaded', () => {
   function showMainVideo() {
     if (modal) modal.classList.add('active');
     document.body.style.overflow = 'hidden';
-    // Optionally, autoplay the video if possible (Cloudflare Stream will usually autoplay)
+    // Show overlay gif if not already shown
+    const overlay = document.getElementById('main-gif-overlay');
+    if (overlay) overlay.style.display = '';
+    // Pause video until overlay is clicked
+    const iframe = document.getElementById('main-film');
+    if (iframe) {
+      // Ensure video is paused and muted initially
+      iframe.contentWindow && iframe.contentWindow.postMessage({event: 'pause'}, '*');
+    }
   }
+
+  // Overlay click: hide overlay, unmute and play video
+  document.addEventListener('click', function(e) {
+    const overlay = document.getElementById('main-gif-overlay');
+    if (overlay && e.target === overlay) {
+      overlay.style.display = 'none';
+      const iframe = document.getElementById('main-film');
+      if (iframe) {
+        // Cloudflare Stream postMessage API: play, unmute, captions, quality
+        iframe.contentWindow && iframe.contentWindow.postMessage({event: 'play'}, '*');
+        iframe.contentWindow && iframe.contentWindow.postMessage({event: 'setMuted', value: false}, '*');
+        iframe.contentWindow && iframe.contentWindow.postMessage({event: 'setCaptions', value: true}, '*');
+        iframe.contentWindow && iframe.contentWindow.postMessage({event: 'setQuality', value: 'highest'}, '*');
+      }
+    }
+  });
   if (closeBtn) closeBtn.addEventListener('click', () => {
     if (modal) modal.classList.remove('active');
     document.body.style.overflow = 'auto';
