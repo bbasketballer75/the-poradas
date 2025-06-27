@@ -47,7 +47,15 @@ window.addEventListener('DOMContentLoaded', () => {
   const introVideo = document.getElementById('intro-video');
   const skipBtn = document.getElementById('skip-intro');
   let revealed = false;
-  if (skipBtn) setTimeout(() => skipBtn.classList.add('visible'), 3000);
+  if (skipBtn) {
+    console.log('Skip button found');
+    setTimeout(() => {
+      skipBtn.classList.add('visible');
+      console.log('Skip button made visible');
+    }, 3000);
+  } else {
+    console.warn('Skip button NOT found');
+  }
   function revealContent() {
     if (revealed) return;
     revealed = true;

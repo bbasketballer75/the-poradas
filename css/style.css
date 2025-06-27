@@ -59,12 +59,13 @@ html, body {
 #intro-wrapper {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 2000;
   background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: opacity 0.6s;
+  pointer-events: auto !important;
 }
 
 #intro-video {
@@ -81,7 +82,7 @@ html, body {
   position: absolute;
   bottom: 32px;
   right: 32px;
-  z-index: 1010;
+  z-index: 2001;
   background: rgba(255,255,255,0.95);
   border: none;
   padding: 12px 28px;
@@ -91,7 +92,8 @@ html, body {
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
-  pointer-events: none;
+  pointer-events: auto !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
   transition: opacity 0.3s, visibility 0s linear 0.3s;
 }
 
