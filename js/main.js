@@ -17,7 +17,7 @@ function loadYouTubeAPI(callback) {
   window.onYouTubeIframeAPIReady = callback;
 }
 function onYouTubeReady() {
-  if (!ytPlayer) {
+  if (!ytPlayer && window.YT && window.YT.Player) {
     ytPlayer = new YT.Player('modal-player');
   }
 }
@@ -94,8 +94,18 @@ window.addEventListener('DOMContentLoaded', () => {
     playBtn.addEventListener('click', function() {
       playOverlay.style.opacity = 0;
       setTimeout(() => { playOverlay.style.display = 'none'; }, 400);
-      // Post message to Cloudflare iframe to play
-      mainFilm.contentWindow && mainFilm.contentWindow.postMessage({event: 'play'}, '*');
+      // Ensure the iframe src includes enablejsapi=1 for postMessage to work
+      if (mainFilm.src && !mainFilm.src.includes('enablejsapi=1')) {
+        const url = new URL(mainFilm.src, window.location.origin);
+        url.searchParams.set('enablejsapi', '1');
+        mainFilm.src = url.toString();
+        // Wait for iframe to reload before sending play message
+        mainFilm.onload = function() {
+          mainFilm.contentWindow && mainFilm.contentWindow.postMessage({event: 'play'}, '*');
+        };
+      } else {
+        mainFilm.contentWindow && mainFilm.contentWindow.postMessage({event: 'play'}, '*');
+      }
     });
   }
 });
