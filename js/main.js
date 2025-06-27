@@ -67,7 +67,15 @@ window.addEventListener('DOMContentLoaded', () => {
     }, 600);
   }
   document.body.style.overflow = 'hidden';
-  if (skipBtn) skipBtn.addEventListener('click', revealContent);
+  if (skipBtn) {
+    skipBtn.style.pointerEvents = 'auto';
+    skipBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      console.log('Skip Intro button clicked');
+      revealContent();
+    });
+  }
   if (introVideo) introVideo.addEventListener('ended', revealContent);
   setTimeout(revealContent, 60000);
 
