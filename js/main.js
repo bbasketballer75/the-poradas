@@ -52,7 +52,7 @@ window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       skipBtn.classList.add('visible');
       console.log('Skip button made visible');
-    }, 3000);
+    }, 5000);
   } else {
     console.warn('Skip button NOT found');
   }
