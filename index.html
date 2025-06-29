@@ -5,155 +5,413 @@
   <title>The Poradas Wedding</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDYCx_JthKAqyRNe5Mtwkx3INBY2MwxSxE",
+      authDomain: "shared-wedding-album-11b45.firebaseapp.com",
+      projectId: "shared-wedding-album-11b45",
+      storageBucket: "shared-wedding-album-11b45.appspot.com",
+      messagingSenderId: "720256701487",
+      appId: "1:720256701487:web:78ceff3f5bb1f2de9b22da"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const storage = firebase.storage();
+    const db = firebase.database();
+  </script>
 </head>
 <body>
 
-  <!-- Fullscreen Intro Video Section -->
-  <section id="intro-section" style="position:relative; overflow:hidden;">
-    <div id="intro-wrapper">
-      <video id="intro-video" autoplay muted playsinline preload="auto" style="object-fit:contain;">
+
+
+
+  <main id="main-content">
+    <section id="intro-section" style="display: flex; justify-content: center; align-items: center; position: fixed; z-index: 10000; background: #fff; top: 0; left: 0; width: 100vw; height: 100vh;">
+      <video id="intro-video" autoplay muted playsinline preload="auto" style="width:100vw;height:100vh;object-fit:contain;background:#fff;display:block;position:absolute;top:0;left:0;z-index:10000;">
         <source src="video/intro.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
-      <button id="skip-intro" type="button">Skip Intro</button>
+      <button id="skip-intro" type="button" style="pointer-events:auto;opacity:0;transition:opacity 0.5s;position:fixed;bottom:24px;right:24px;z-index:10001;padding:0.3em 1em;line-height:1.2;font-size:0.95em;background:rgba(255,255,255,0.7);border:1px solid #ccc;border-radius:18px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);height:auto;min-height:unset;">Skip Intro</button>
+    </section>
+
+    <template id="main-template">
+      <section id="scroll-section"></section>
+      <section id="family-tree" class="wedding-family-tree">
+        <div class="family-tree-rows">
+          <div class="family-tree-row couple-row">
+            <div class="tree-person"><img src="images/austin.webp" alt="Austin" class="ring-couple"><span class="tree-person-name">Austin</span></div>
+            <div class="tree-person"><img src="images/jordyn.webp" alt="Jordyn" class="ring-couple"><span class="tree-person-name">Jordyn</span></div>
+          </div>
+          <div class="family-tree-section-block">
+            <div class="family-tree-section-title">Beloved Parents</div>
+            <div class="family-tree-row">
+              <div class="tree-person"><img src="images/parents/christine.webp" alt="Christine Pringle" class="ring-parent"><span class="tree-person-name">Christine Pringle</span></div>
+              <div class="tree-person"><img src="images/parents/jerame.webp" alt="Jerame Pringle" class="ring-parent"><span class="tree-person-name">Jerame Pringle</span></div>
+              <div class="tree-person"><img src="images/parents/heather.webp" alt="Heather Shaffer" class="ring-parent"><span class="tree-person-name">Heather Shaffer</span></div>
+              <div class="tree-person"><img src="images/parents/melony.webp" alt="Melony Porada" class="ring-parent"><span class="tree-person-name">Melony Porada</span></div>
+            </div>
+          </div>
+          <div class="family-tree-section-block">
+            <div class="family-tree-section-title">Groomsmen</div>
+            <div class="family-tree-row groomsmen">
+              <div class="tree-person"><img src="images/wedding-party/groomsmen/tyler-sharpe.webp" alt="Tyler Sharpe" class="ring-groomsman"><span class="tree-person-name">Tyler Sharpe</span><div class="tree-person-role">Best Man</div></div>
+              <div class="tree-person"><img src="images/wedding-party/groomsmen/alex-molnar.webp" alt="Alex Molnar" class="ring-groomsman"><span class="tree-person-name">Alex Molnar</span></div>
+              <div class="tree-person"><img src="images/wedding-party/groomsmen/brosonan-mccray.webp" alt="Brosonan McCray" class="ring-groomsman"><span class="tree-person-name">Brosonan McCray</span></div>
+              <div class="tree-person"><img src="images/wedding-party/groomsmen/ean-pringle.webp" alt="Ean Pringle" class="ring-groomsman"><span class="tree-person-name">Ean Pringle</span></div>
+              <div class="tree-person"><img src="images/wedding-party/groomsmen/eddie-migut.webp" alt="Eddie Migut" class="ring-groomsman"><span class="tree-person-name">Eddie Migut</span></div>
+              <div class="tree-person"><img src="images/wedding-party/groomsmen/ian-porada.webp" alt="Ian Porada" class="ring-groomsman"><span class="tree-person-name">Ian Porada</span></div>
+              <div class="tree-person"><img src="images/wedding-party/groomsmen/nate-berkebile.webp" alt="Nate Berkebile" class="ring-groomsman"><span class="tree-person-name">Nate Berkebile</span></div>
+            </div>
+          </div>
+          <div class="family-tree-section-block">
+            <div class="family-tree-section-title">Bridal Party</div>
+            <div class="family-tree-row bridesmaids">
+              <div class="tree-person"><img src="images/wedding-party/bridesmaids/lexi-ferg.webp" alt="Lexi Ferg" class="ring-bridesmaid"><span class="tree-person-name">Lexi Ferg</span><div class="tree-person-role">Matron of Honor</div></div>
+              <div class="tree-person"><img src="images/wedding-party/bridesmaids/brinnah-porada.webp" alt="Brinnah Porada" class="ring-bridesmaid"><span class="tree-person-name">Brinnah Porada</span></div>
+              <div class="tree-person"><img src="images/wedding-party/bridesmaids/caitie-helsel.webp" alt="Caitie Helsel" class="ring-bridesmaid"><span class="tree-person-name">Caitie Helsel</span></div>
+              <div class="tree-person"><img src="images/wedding-party/bridesmaids/emily-aurandt.webp" alt="Emily Aurandt" class="ring-bridesmaid"><span class="tree-person-name">Emily Aurandt</span></div>
+              <div class="tree-person"><img src="images/wedding-party/bridesmaids/hannah-porada.webp" alt="Hannah Porada" class="ring-bridesmaid"><span class="tree-person-name">Hannah Porada</span></div>
+              <div class="tree-person"><img src="images/wedding-party/bridesmaids/maria-mccray.webp" alt="Maria McCray" class="ring-bridesmaid"><span class="tree-person-name">Maria McCray</span><div class="tree-person-role">Officiant</div></div>
+              <div class="tree-person"><img src="images/wedding-party/bridesmaids/mic.webp" alt="Mic" class="ring-bridesmaid"><span class="tree-person-name">Micaela Helsel</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="main-film-section">
+        <h2 class="section-title">The Wedding Film</h2>
+        <div id="main-film-player-container">
+          <video id="main-film-video" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" poster="images/main-film-poster.jpg" data-setup='{"fluid": true}'>
+            <source src="https://pub-de1431994c6f481dbc54181e6b5462d3.r2.dev/final-wedding-video.mp4" type="video/mp4" />
+            <track kind="chapters" src="https://pub-de1431994c6f481dbc54181e6b5462d3.r2.dev/main-film-chapters.vtt" srclang="en" label="Chapters" default>
+          </video>
+        </div>
+      </section>
+      <section id="engagement-album" class="album-section">
+        <h2 class="section-title">Our Engagement</h2>
+        <div class="horizontal-scroll-gallery">
+          <img src="images/engagement/1.jpg" alt="Engagement 1" onerror="this.style.display='none'"/>
+          <img src="images/engagement/2.jpg" alt="Engagement 2" onerror="this.style.display='none'"/>
+          <img src="images/engagement/3.jpg" alt="Engagement 3" onerror="this.style.display='none'"/>
+          <img src="images/engagement/4.jpg" alt="Engagement 4" onerror="this.style.display='none'"/>
+        </div>
+      </section>
+      <section id="rings-section" class="album-section">
+        <h2 class="section-title">Our Rings</h2>
+        <div class="rings-row">
+          <img src="images/rings/austin-ring.jpg" alt="Austin's Ring" class="ring-img" onerror="this.style.display='none'"/>
+          <img src="images/rings/jordyn-ring.jpg" alt="Jordyn's Ring" class="ring-img" onerror="this.style.display='none'"/>
+        </div>
+      </section>
+      <section id="shared-album-section" class="album-section">
+        <h2 class="section-title">Share Your Photos</h2>
+        <p class="section-subtitle">Help us remember the day! Please upload any photos you've taken.</p>
+        <form id="photo-upload-form">
+          <input type="text" id="photo-name" placeholder="Your Name" required />
+          <input type="file" id="photo-file" accept="image/*" required />
+          <button type="submit">Upload Photo</button>
+        </form>
+        <div id="shared-photo-gallery" class="shared-gallery"></div>
+      </section>
+      <div class="guestbook-map-container">
+        <section id="guestbook-section" class="album-section">
+          <h2 class="section-title">Digital Guestbook</h2>
+          <form id="guestbook-form">
+            <input type="text" id="guest-name" placeholder="Your Name" required />
+            <textarea id="guest-message" placeholder="Your Message" required></textarea>
+            <button type="submit">Leave a Message</button>
+          </form>
+          <div id="guestbook-messages"></div>
+        </section>
+        <section id="map-section" class="album-section">
+          <h2 class="section-title">Where Our Guests Are From</h2>
+          <div id="guest-map"></div>
+          <div id="manual-pin-area">
+            <button id="manual-pin-btn" type="button">Drop a Pin on the Map</button>
+            <div>If you didn't share your location, you can still add yourself!</div>
+          </div>
+        </section>
+      </div>
+    </template>
+    </section>
+
+    <section id="scroll-section">
+
+    </section>
+
+    <section id="family-tree" class="wedding-family-tree">
+      <div class="family-tree-rows">
+        <div class="family-tree-row couple-row">
+          <div class="tree-person"><img src="images/austin.webp" alt="Austin" class="ring-couple"><span class="tree-person-name">Austin</span></div>
+          <div class="tree-person"><img src="images/jordyn.webp" alt="Jordyn" class="ring-couple"><span class="tree-person-name">Jordyn</span></div>
+        </div>
+        <div class="family-tree-section-block">
+          <div class="family-tree-section-title">Beloved Parents</div>
+          <div class="family-tree-row">
+            <div class="tree-person"><img src="images/parents/christine.webp" alt="Christine Pringle" class="ring-parent"><span class="tree-person-name">Christine Pringle</span></div>
+            <div class="tree-person"><img src="images/parents/jerame.webp" alt="Jerame Pringle" class="ring-parent"><span class="tree-person-name">Jerame Pringle</span></div>
+            <div class="tree-person"><img src="images/parents/heather.webp" alt="Heather Shaffer" class="ring-parent"><span class="tree-person-name">Heather Shaffer</span></div>
+            <div class="tree-person"><img src="images/parents/melony.webp" alt="Melony Porada" class="ring-parent"><span class="tree-person-name">Melony Porada</span></div>
+          </div>
+        </div>
+        <div class="family-tree-section-block">
+          <div class="family-tree-section-title">Groomsmen</div>
+          <div class="family-tree-row groomsmen">
+            <div class="tree-person"><img src="images/wedding-party/groomsmen/tyler-sharpe.webp" alt="Tyler Sharpe" class="ring-groomsman"><span class="tree-person-name">Tyler Sharpe</span><div class="tree-person-role">Best Man</div></div>
+            <div class="tree-person"><img src="images/wedding-party/groomsmen/alex-molnar.webp" alt="Alex Molnar" class="ring-groomsman"><span class="tree-person-name">Alex Molnar</span></div>
+            <div class="tree-person"><img src="images/wedding-party/groomsmen/brosonan-mccray.webp" alt="Brosonan McCray" class="ring-groomsman"><span class="tree-person-name">Brosonan McCray</span></div>
+            <div class="tree-person"><img src="images/wedding-party/groomsmen/ean-pringle.webp" alt="Ean Pringle" class="ring-groomsman"><span class="tree-person-name">Ean Pringle</span></div>
+            <div class="tree-person"><img src="images/wedding-party/groomsmen/eddie-migut.webp" alt="Eddie Migut" class="ring-groomsman"><span class="tree-person-name">Eddie Migut</span></div>
+            <div class="tree-person"><img src="images/wedding-party/groomsmen/ian-porada.webp" alt="Ian Porada" class="ring-groomsman"><span class="tree-person-name">Ian Porada</span></div>
+            <div class="tree-person"><img src="images/wedding-party/groomsmen/nate-berkebile.webp" alt="Nate Berkebile" class="ring-groomsman"><span class="tree-person-name">Nate Berkebile</span></div>
+          </div>
+        </div>
+        <div class="family-tree-section-block">
+          <div class="family-tree-section-title">Bridal Party</div>
+          <div class="family-tree-row bridesmaids">
+            <div class="tree-person"><img src="images/wedding-party/bridesmaids/lexi-ferg.webp" alt="Lexi Ferg" class="ring-bridesmaid"><span class="tree-person-name">Lexi Ferg</span><div class="tree-person-role">Matron of Honor</div></div>
+            <div class="tree-person"><img src="images/wedding-party/bridesmaids/brinnah-porada.webp" alt="Brinnah Porada" class="ring-bridesmaid"><span class="tree-person-name">Brinnah Porada</span></div>
+            <div class="tree-person"><img src="images/wedding-party/bridesmaids/caitie-helsel.webp" alt="Caitie Helsel" class="ring-bridesmaid"><span class="tree-person-name">Caitie Helsel</span></div>
+            <div class="tree-person"><img src="images/wedding-party/bridesmaids/emily-aurandt.webp" alt="Emily Aurandt" class="ring-bridesmaid"><span class="tree-person-name">Emily Aurandt</span></div>
+            <div class="tree-person"><img src="images/wedding-party/bridesmaids/hannah-porada.webp" alt="Hannah Porada" class="ring-bridesmaid"><span class="tree-person-name">Hannah Porada</span></div>
+            <div class="tree-person"><img src="images/wedding-party/bridesmaids/maria-mccray.webp" alt="Maria McCray" class="ring-bridesmaid"><span class="tree-person-name">Maria McCray</span><div class="tree-person-role">Officiant</div></div>
+            <div class="tree-person"><img src="images/wedding-party/bridesmaids/mic.webp" alt="Mic" class="ring-bridesmaid"><span class="tree-person-name">Micaela Helsel</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="main-film-section">
+      <h2 class="section-title">The Wedding Film</h2>
+      <div id="main-film-player-container">
+        <video id="main-film-video" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" poster="images/main-film-poster.jpg" data-setup='{"fluid": true}'>
+          <source src="https://pub-de1431994c6f481dbc54181e6b5462d3.r2.dev/final-wedding-video.mp4" type="video/mp4" />
+          <track kind="chapters" src="https://pub-de1431994c6f481dbc54181e6b5462d3.r2.dev/main-film-chapters.vtt" srclang="en" label="Chapters" default>
+        </video>
+      </div>
+    </section>
+
+    <section id="engagement-album" class="album-section">
+      <h2 class="section-title">Our Engagement</h2>
+      <div class="horizontal-scroll-gallery">
+        <img src="images/engagement/1.jpg" alt="Engagement 1" onerror="this.style.display='none'"/>
+        <img src="images/engagement/2.jpg" alt="Engagement 2" onerror="this.style.display='none'"/>
+        <img src="images/engagement/3.jpg" alt="Engagement 3" onerror="this.style.display='none'"/>
+        <img src="images/engagement/4.jpg" alt="Engagement 4" onerror="this.style.display='none'"/>
+      </div>
+    </section>
+
+    <section id="rings-section" class="album-section">
+      <h2 class="section-title">Our Rings</h2>
+      <div class="rings-row">
+        <img src="images/rings/austin-ring.jpg" alt="Austin's Ring" class="ring-img" onerror="this.style.display='none'"/>
+        <img src="images/rings/jordyn-ring.jpg" alt="Jordyn's Ring" class="ring-img" onerror="this.style.display='none'"/>
+      </div>
+    </section>
+
+    <section id="shared-album-section" class="album-section">
+      <h2 class="section-title">Share Your Photos</h2>
+      <p class="section-subtitle">Help us remember the day! Please upload any photos you've taken.</p>
+      <form id="photo-upload-form">
+        <input type="text" id="photo-name" placeholder="Your Name" required />
+        <input type="file" id="photo-file" accept="image/*" required />
+        <button type="submit">Upload Photo</button>
+      </form>
+      <div id="shared-photo-gallery" class="shared-gallery"></div>
+    </section>
+
+    <div class="guestbook-map-container">
+      <section id="guestbook-section" class="album-section">
+        <h2 class="section-title">Digital Guestbook</h2>
+        <form id="guestbook-form">
+          <input type="text" id="guest-name" placeholder="Your Name" required />
+          <textarea id="guest-message" placeholder="Your Message" required></textarea>
+          <button type="submit">Leave a Message</button>
+        </form>
+        <div id="guestbook-messages"></div>
+      </section>
+      <section id="map-section" class="album-section">
+        <h2 class="section-title">Where Our Guests Are From</h2>
+        <div id="guest-map"></div>
+        <div id="manual-pin-area">
+          <button id="manual-pin-btn" type="button">Drop a Pin on the Map</button>
+          <div>If you didn't share your location, you can still add yourself!</div>
+        </div>
+      </section>
     </div>
-  </section>
+  </main>
+
+  <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const body = document.body;
+      const mainContent = document.getElementById('main-content');
+      const introSection = document.getElementById('intro-section');
+      const introVideo = document.getElementById('intro-video');
+      const skipBtn = document.getElementById('skip-intro');
+
+      // Show intro video immediately
+      introSection.style.display = 'flex';
+      mainContent.style.display = 'block';
+      skipBtn.style.opacity = 0;
+      skipBtn.style.pointerEvents = 'auto';
+      introVideo.muted = true;
+      introVideo.setAttribute('muted', '');
+      introVideo.load();
+      let videoStarted = false;
+      let skipTimeout;
+      let fallbackTimeout;
+
+      // DEBUG: Log skip button click
+      skipBtn.onclick = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Skip button clicked');
+        endIntro();
+      };
+
+      // Fallback: if video doesn't start loading in 3s, skip intro
+      fallbackTimeout = setTimeout(() => {
+        if (!videoStarted) {
+          endIntro();
+        }
+      }, 3000);
+
+      function showSkipBtn() {
+        skipBtn.style.opacity = 1;
+        skipBtn.disabled = false;
+      }
 
 
-  <!-- Scroll Video Section (after intro, before family tree) -->
-  <section id="scroll-section" style="position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#fff;">
-    <video id="scroll-video" preload="auto" style="object-fit:cover;" playsinline autoplay muted loop>
-      <source src="video/scroll.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </section>
 
-  <!-- Family Tree Section (after scroll video, with couple at top) -->
-  <section id="family-tree" class="wedding-family-tree">
-    <!-- Removed Family Tree & Wedding Party title -->
-    <div class="family-tree-rows">
-      <!-- Couple Row (moved to top) -->
-      <div class="family-tree-row">
-        <div class="tree-person" data-name="Austin">
-          <img src="images/austin.webp" alt="Austin">
-        </div>
-        <div class="tree-person" data-name="Jordyn">
-          <img src="images/jordyn.webp" alt="Jordyn">
-        </div>
-      </div>
-      <!-- Parents Title & Row -->
-      <div class="family-tree-section-block">
-        <div class="family-tree-section-title">Beloved Parents</div>
-        <div class="family-tree-row">
-          <div class="tree-person" data-name="Christine Pringle">
-            <img src="images/parents/christine.webp" alt="Christine Pringle">
-          </div>
-          <div class="tree-person" data-name="Jerame Pringle">
-            <img src="images/parents/jerame.webp" alt="Jerame Pringle">
-          </div>
-          <div class="tree-person" data-name="Heather Shaffer">
-            <img src="images/parents/heather.webp" alt="Heather Shaffer">
-          </div>
-          <div class="tree-person" data-name="Melony Porada">
-            <img src="images/parents/melony.webp" alt="Melony Porada">
-          </div>
-        </div>
-      </div>
-
-      <!-- Groomsmen Row -->
-      <!-- Groomsmen Title & Row -->
-      <div class="family-tree-section-block">
-        <div class="family-tree-section-title">Groomsmen</div>
-        <div class="family-tree-row groomsmen">
-          <div class="tree-person">
-            <img src="images/wedding-party/groomsmen/tyler-sharpe.webp" alt="Tyler Sharpe">
-            <span class="tree-person-name">Tyler Sharpe</span>
-            <div class="tree-person-role">Best Man</div>
-          </div>
-          <div class="tree-person">
-            <img src="images/wedding-party/groomsmen/alex-molnar.webp" alt="Alex Molnar">
-            <span class="tree-person-name">Alex Molnar</span>
-          </div>
-          <div class="tree-person">
-            <img src="images/wedding-party/groomsmen/brosonan-mccray.webp" alt="Brosonan McCray">
-            <span class="tree-person-name">Brosonan McCray</span>
-          </div>
-          <div class="tree-person">
-            <img src="images/wedding-party/groomsmen/ean-pringle.webp" alt="Ean Pringle">
-            <span class="tree-person-name">Ean Pringle</span>
-          </div>
-          <div class="tree-person">
-            <img src="images/wedding-party/groomsmen/eddie-migut.webp" alt="Eddie Migut">
-            <span class="tree-person-name">Eddie Migut</span>
-          </div>
-          <div class="tree-person">
-            <img src="images/wedding-party/groomsmen/ian-porada.webp" alt="Ian Porada">
-            <span class="tree-person-name">Ian Porada</span>
-          </div>
-          <div class="tree-person">
-            <img src="images/wedding-party/groomsmen/nate-berkebile.webp" alt="Nate Berkebile">
-            <span class="tree-person-name">Nate Berkebile</span>
-          </div>
-        </div>
-      </div>
-      <!-- Bridesmaids Row -->
-      <!-- Bridesmaids Title & Row -->
-      <div class="family-tree-section-block">
-        <div class="family-tree-section-title">Bridal Party</div>
-        <div class="family-tree-row bridesmaids">
-          <div class="tree-person">
-            <img src="images/wedding-party/bridesmaids/lexi-ferg.webp" alt="Lexi Ferg">
-            <span class="tree-person-name">Lexi Ferg</span>
-            <div class="tree-person-role">Matron of Honor</div>
-          </div>
-          <div class="tree-person">
-            <img src="images/wedding-party/bridesmaids/brinnah-porada.webp" alt="Brinnah Porada">
-            <span class="tree-person-name">Brinnah Porada</span>
-          </div>
-          <div class="tree-person">
-            <img src="images/wedding-party/bridesmaids/caitie-helsel.webp" alt="Caitie Helsel">
-            <span class="tree-person-name">Caitie Helsel</span>
-          </div>
-          <div class="tree-person">
-            <img src="images/wedding-party/bridesmaids/emily-aurandt.webp" alt="Emily Aurandt">
-            <span class="tree-person-name">Emily Aurandt</span>
-          </div>
-          <div class="tree-person">
-            <img src="images/wedding-party/bridesmaids/hannah-porada.webp" alt="Hannah Porada">
-            <span class="tree-person-name">Hannah Porada</span>
-          </div>
-          <div class="tree-person">
-            <img src="images/wedding-party/bridesmaids/maria-mccray.webp" alt="Maria McCray">
-            <span class="tree-person-name">Maria McCray</span>
-            <div class="tree-person-role">Officiant</div>
-          </div>
-          <div class="tree-person">
-            <img src="images/wedding-party/bridesmaids/mic.webp" alt="Mic">
-            <span class="tree-person-name">Micaela Helsel</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Main Film Video Section (now after family tree) -->
-<section id="main-film-section" style="width:100vw; height:100vh; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#fff;">
-  <div id="main-film-overlay" style="position:absolute;top:0;left:0;width:100vw;height:100vh;z-index:2;background:rgba(255,255,255,0.92);display:flex;align-items:center;justify-content:center;flex-direction:column;cursor:pointer;transition:opacity 0.4s;">
-    <button id="main-film-play-all" type="button" style="font-size:2.2rem;padding:22px 48px;border-radius:12px;background:#f7c873;color:#b48a3c;border:none;box-shadow:0 4px 24px rgba(180,138,60,0.10);font-family:'Playfair Display',serif;cursor:pointer;transition:background 0.2s;margin-bottom:18px;">Watch Video Fullscreen with Captions</button>
-    <div id="main-film-caption-hint" style="font-size:1.1rem;color:#8fa382;margin-top:12px;text-align:center;max-width:90vw;">If captions do not appear, please click the <b>CC</b> button in the video controls.</div>
-  </div>
-  <iframe
-    id="main-film"
-    src="https://customer-udvejv26dg5j5jw5.cloudflarestream.com/270e267a89770768b595784b97727120/iframe?preload=true&poster=https%3A%2F%2Fcustomer-udvejv26dg5j5jw5.cloudflarestream.com%2F270e267a89770768b595784b97727120%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&captions=show&quality=highest&enablejsapi=1"
-    loading="eager"
-    style="border: none; width: 100vw; height: 100vh; max-width: 100vw; max-height: 100vh;z-index:1;"
-    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-    allowfullscreen
-  ></iframe>
-</section>
+      function endIntro() {
+        // Hide intro section and pause video
+        introSection.style.display = 'none';
+        mainContent.style.display = 'block';
+        try { introVideo.pause(); } catch(e) { console.log('Pause error', e); }
+        skipBtn.style.opacity = 0;
+        skipBtn.disabled = true;
+        clearTimeout(skipTimeout);
+        clearTimeout(fallbackTimeout);
+        // Inject main content after intro is done
+        if (!document.getElementById('family-tree')) {
+          const template = document.getElementById('main-template');
+          if (template) {
+            mainContent.appendChild(template.content.cloneNode(true));
+          }
+        }
+        // Now run scroll video lazy load logic
+        const scrollSection = document.getElementById('scroll-section');
+        if ('IntersectionObserver' in window && scrollSection) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                // Only create video when visible
+                let scrollVideo = document.getElementById('scroll-video');
+                if (!scrollVideo) {
+                  scrollVideo = document.createElement('video');
+                  scrollVideo.id = 'scroll-video';
+                  scrollVideo.preload = 'none';
+                  scrollVideo.playsInline = true;
+                  scrollVideo.muted = true;
+                  scrollVideo.loop = true;
+                  scrollVideo.style.background = '#fff';
+                  scrollVideo.style.width = '100%';
+                  scrollVideo.style.display = 'block';
+                  const source = document.createElement('source');
+                  source.type = 'video/mp4';
+                  source.src = 'video/scroll.mp4';
+                  scrollVideo.appendChild(source);
+                  scrollSection.appendChild(scrollVideo);
+                }
+                scrollVideo.load();
+                scrollVideo.play().catch(()=>{});
+                observer.disconnect();
+              }
+            });
+          }, { threshold: 0.1 });
+          observer.observe(scrollSection);
+        }
+        console.log('endIntro called');
+      }
 
 
-  <!-- Main JS at end of body for guaranteed DOM access -->
+      // Remove any previous listeners, then add fresh ones
+      skipBtn.onclick = endIntro;
+      introVideo.onended = endIntro;
+
+      // Show skip after 5s of playback
+      introVideo.addEventListener('play', function onPlayOnce() {
+        videoStarted = true;
+        clearTimeout(fallbackTimeout);
+        skipTimeout = setTimeout(showSkipBtn, 5000);
+        introVideo.removeEventListener('play', onPlayOnce);
+      });
+
+      // Try to play video
+      const playPromise = introVideo.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay was prevented. User interaction will be required.
+          const unlockPlayback = () => {
+            introVideo.muted = true;
+            introVideo.setAttribute('muted', '');
+            introVideo.play();
+            body.removeEventListener('click', unlockPlayback);
+            body.removeEventListener('touchstart', unlockPlayback);
+          }
+          body.addEventListener('click', unlockPlayback, { once: true });
+          body.addEventListener('touchstart', unlockPlayback, { once: true });
+        });
+      }
+      // --- SCROLL VIDEO LAZY LOAD ---
+      function loadAndPlayScrollVideo() {
+        let scrollVideo = document.getElementById('scroll-video');
+        if (!scrollVideo) {
+          // Create the video element only when needed
+          scrollVideo = document.createElement('video');
+          scrollVideo.id = 'scroll-video';
+          scrollVideo.preload = 'none';
+          scrollVideo.playsInline = true;
+          scrollVideo.muted = true;
+          scrollVideo.loop = true;
+          scrollVideo.style.background = '#fff';
+          scrollVideo.style.width = '100%';
+          scrollVideo.style.display = 'block';
+          const source = document.createElement('source');
+          source.type = 'video/mp4';
+          source.src = 'video/scroll.mp4';
+          scrollVideo.appendChild(source);
+          const scrollSection = document.getElementById('scroll-section');
+          scrollSection.appendChild(scrollVideo);
+        }
+        scrollVideo.load();
+        scrollVideo.play().catch(()=>{});
+      }
+
+
+      // Only load and show scroll video when it is visible on screen (Intersection Observer)
+      const scrollSection = document.getElementById('scroll-section');
+      if ('IntersectionObserver' in window && scrollSection) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              console.log('[ScrollVideo] Section visible, creating and loading video');
+              loadAndPlayScrollVideo();
+              observer.disconnect();
+            }
+          });
+        }, { threshold: 0.1 });
+        observer.observe(scrollSection);
+      }
+    });
+  </script>
   <script src="js/main.js"></script>
 </body>
 </html>
