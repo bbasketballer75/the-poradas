@@ -9,9 +9,9 @@
 <body>
 
   <!-- Fullscreen Intro Video Section -->
-  <section id="intro-section" style="width:100vw; height:100vh; position:relative; overflow:hidden;">
+  <section id="intro-section" style="position:relative; overflow:hidden;">
     <div id="intro-wrapper">
-      <video id="intro-video" autoplay muted playsinline preload="auto" style="width:100vw;height:100vh;object-fit:cover;">
+      <video id="intro-video" autoplay muted playsinline preload="auto" style="object-fit:contain;">
         <source src="video/intro.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -21,8 +21,8 @@
 
 
   <!-- Scroll Video Section (after intro, before family tree) -->
-  <section id="scroll-section" style="width:100vw; height:100vh; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#fff;">
-    <video id="scroll-video" preload="auto" style="width:100vw;height:100vh;object-fit:cover;" playsinline autoplay muted loop>
+  <section id="scroll-section" style="position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#fff;">
+    <video id="scroll-video" preload="auto" style="object-fit:cover;" playsinline autoplay muted loop>
       <source src="video/scroll.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -139,11 +139,12 @@
   <!-- Main Film Video Section (now after family tree) -->
 <section id="main-film-section" style="width:100vw; height:100vh; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#fff;">
   <div id="main-film-overlay" style="position:absolute;top:0;left:0;width:100vw;height:100vh;z-index:2;background:rgba(255,255,255,0.92);display:flex;align-items:center;justify-content:center;flex-direction:column;cursor:pointer;transition:opacity 0.4s;">
-    <button id="play-main-film" type="button" style="font-size:2.2rem;padding:22px 48px;border-radius:12px;background:#f7c873;color:#b48a3c;border:none;box-shadow:0 4px 24px rgba(180,138,60,0.10);font-family:'Playfair Display',serif;cursor:pointer;transition:background 0.2s;">Click to Play Video</button>
+    <button id="main-film-play-all" type="button" style="font-size:2.2rem;padding:22px 48px;border-radius:12px;background:#f7c873;color:#b48a3c;border:none;box-shadow:0 4px 24px rgba(180,138,60,0.10);font-family:'Playfair Display',serif;cursor:pointer;transition:background 0.2s;margin-bottom:18px;">Watch Video Fullscreen with Captions</button>
+    <div id="main-film-caption-hint" style="font-size:1.1rem;color:#8fa382;margin-top:12px;text-align:center;max-width:90vw;">If captions do not appear, please click the <b>CC</b> button in the video controls.</div>
   </div>
   <iframe
     id="main-film"
-    src="https://customer-udvejv26dg5j5jw5.cloudflarestream.com/270e267a89770768b595784b97727120/iframe?autoplay=0&muted=0&preload=true&poster=https%3A%2F%2Fcustomer-udvejv26dg5j5jw5.cloudflarestream.com%2F270e267a89770768b595784b97727120%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&captions=show&quality=highest"
+    src="https://customer-udvejv26dg5j5jw5.cloudflarestream.com/270e267a89770768b595784b97727120/iframe?preload=true&poster=https%3A%2F%2Fcustomer-udvejv26dg5j5jw5.cloudflarestream.com%2F270e267a89770768b595784b97727120%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&captions=show&quality=highest&enablejsapi=1"
     loading="eager"
     style="border: none; width: 100vw; height: 100vh; max-width: 100vw; max-height: 100vh;z-index:1;"
     allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"

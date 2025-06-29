@@ -81,24 +81,31 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // --- Main Video logic (manual play on click) ---
   const playOverlay = document.getElementById('main-film-overlay');
-  const playBtn = document.getElementById('play-main-film');
+  const playAllBtn = document.getElementById('main-film-play-all');
   const mainFilm = document.getElementById('main-film');
-  if (playBtn && playOverlay && mainFilm) {
-    playBtn.addEventListener('click', function() {
+  if (playAllBtn && playOverlay && mainFilm) {
+    playAllBtn.addEventListener('click', async function() {
+      // Fullscreen the iframe
+      function requestFullscreen(el) {
+        if (el.requestFullscreen) return el.requestFullscreen();
+        if (el.webkitRequestFullscreen) return el.webkitRequestFullscreen();
+        if (el.msRequestFullscreen) return el.msRequestFullscreen();
+        if (el.mozRequestFullScreen) return el.mozRequestFullScreen();
+      }
+      await requestFullscreen(mainFilm);
+      // Unmute, captions, quality, play (send multiple times for reliability)
+      const sendAll = () => {
+        mainFilm.contentWindow && mainFilm.contentWindow.postMessage({event: 'setMuted', value: false}, '*');
+        mainFilm.contentWindow && mainFilm.contentWindow.postMessage({event: 'setCaptions', value: true}, '*');
+        mainFilm.contentWindow && mainFilm.contentWindow.postMessage({event: 'setQuality', value: 'highest'}, '*');
+        mainFilm.contentWindow && mainFilm.contentWindow.postMessage({event: 'play'}, '*');
+      };
+      sendAll();
+      setTimeout(sendAll, 300);
+      setTimeout(sendAll, 800);
+      // Hide overlay after starting video
       playOverlay.style.opacity = 0;
       setTimeout(() => { playOverlay.style.display = 'none'; }, 400);
-      // Ensure the iframe src includes enablejsapi=1 for postMessage to work
-      if (mainFilm.src && !mainFilm.src.includes('enablejsapi=1')) {
-        const url = new URL(mainFilm.src, window.location.origin);
-        url.searchParams.set('enablejsapi', '1');
-        mainFilm.src = url.toString();
-        // Wait for iframe to reload before sending play message
-        mainFilm.onload = function() {
-          mainFilm.contentWindow && mainFilm.contentWindow.postMessage({event: 'play'}, '*');
-        };
-      } else {
-        mainFilm.contentWindow && mainFilm.contentWindow.postMessage({event: 'play'}, '*');
-      }
     });
   }
 });
