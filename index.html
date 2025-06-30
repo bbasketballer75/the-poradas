@@ -18,21 +18,14 @@
     const firebaseConfig = {
       apiKey: "AIzaSyDYCx_JthKAqyRNe5Mtwkx3INBY2MwxSxE",
       authDomain: "shared-wedding-album-11b45.firebaseapp.com",
-      databaseURL: "https://shared-wedding-album-11b45-default-rtdb.firebaseio.com/",
       projectId: "shared-wedding-album-11b45",
       storageBucket: "shared-wedding-album-11b45.appspot.com",
       messagingSenderId: "720256701487",
       appId: "1:720256701487:web:78ceff3f5bb1f2de9b22da"
     };
-    
-    try {
-      firebase.initializeApp(firebaseConfig);
-      const storage = firebase.storage();
-      const db = firebase.database();
-      console.log('[Firebase] Successfully initialized');
-    } catch (error) {
-      console.error('[Firebase] Initialization failed:', error);
-    }
+    firebase.initializeApp(firebaseConfig);
+    const storage = firebase.storage();
+    const db = firebase.database();
   </script>
 </head>
 <body>
@@ -53,128 +46,51 @@
 
     <section id="family-tree" class="wedding-family-tree">
       <div class="family-tree-rows">
-        
-        <!-- Austin & Jordyn - Main Couple -->
         <div class="family-tree-row couple-row">
-          <div class="tree-person">
-            <img src="images/austin.webp" alt="Austin" class="ring-couple">
-            <span class="tree-person-name">Austin</span>
-          </div>
-          <div class="tree-person">
-            <img src="images/jordyn.webp" alt="Jordyn" class="ring-couple">
-            <span class="tree-person-name">Jordyn</span>
-          </div>
+          <div class="tree-person"><img src="images/austin.webp" alt="Austin" class="ring-couple"><span class="tree-person-name">Austin</span></div>
+          <div class="tree-person"><img src="images/jordyn.webp" alt="Jordyn" class="ring-couple"><span class="tree-person-name">Jordyn</span></div>
         </div>
-        
-        <!-- Parents Section -->
         <div class="family-tree-section-block">
           <div class="family-tree-section-title">Beloved Parents</div>
-          <div class="family-tree-row parents-row">
-            <div class="parent-group">
-              <div class="tree-person">
-                <img src="images/parents/christine.webp" alt="Christine Pringle" class="ring-parent">
-                <span class="tree-person-name">Christine Pringle</span>
-              </div>
-              <div class="tree-person">
-                <img src="images/parents/jerame.webp" alt="Jerame Pringle" class="ring-parent">
-                <span class="tree-person-name">Jerame Pringle</span>
-              </div>
-            </div>
-            <div class="parent-group">
-              <div class="tree-person">
-                <img src="images/parents/heather.webp" alt="Heather Shaffer" class="ring-parent">
-                <span class="tree-person-name">Heather Shaffer</span>
-              </div>
-            </div>
-            <div class="parent-group">
-              <div class="tree-person">
-                <img src="images/parents/melony.webp" alt="Melony Porada" class="ring-parent">
-                <span class="tree-person-name">Melony Porada</span>
-              </div>
-            </div>
+          <div class="family-tree-row">
+            <div class="tree-person"><img src="images/parents/christine.webp" alt="Christine Pringle" class="ring-parent"><span class="tree-person-name">Christine Pringle</span></div>
+            <div class="tree-person"><img src="images/parents/jerame.webp" alt="Jerame Pringle" class="ring-parent"><span class="tree-person-name">Jerame Pringle</span></div>
+            <div class="tree-person"><img src="images/parents/heather.webp" alt="Heather Shaffer" class="ring-parent"><span class="tree-person-name">Heather Shaffer</span></div>
+            <div class="tree-person"><img src="images/parents/melony.webp" alt="Melony Porada" class="ring-parent"><span class="tree-person-name">Melony Porada</span></div>
           </div>
         </div>
-        
-        <!-- Groomsmen Section -->
         <div class="family-tree-section-block">
           <div class="family-tree-section-title">Groomsmen</div>
-          <div class="family-tree-row wedding-party-row">
-            <div class="tree-person">
-              <img src="images/wedding-party/groomsmen/tyler-sharpe.webp" alt="Tyler Sharpe" class="ring-groomsman">
-              <span class="tree-person-name">Tyler Sharpe</span>
-              <div class="tree-person-role">Best Man</div>
-            </div>
-            <div class="tree-person">
-              <img src="images/wedding-party/groomsmen/alex-molnar.webp" alt="Alex Molnar" class="ring-groomsman">
-              <span class="tree-person-name">Alex Molnar</span>
-            </div>
-            <div class="tree-person">
-              <img src="images/wedding-party/groomsmen/brosonan-mccray.webp" alt="Brosonan McCray" class="ring-groomsman">
-              <span class="tree-person-name">Brosonan McCray</span>
-            </div>
-            <div class="tree-person">
-              <img src="images/wedding-party/groomsmen/ean-pringle.webp" alt="Ean Pringle" class="ring-groomsman">
-              <span class="tree-person-name">Ean Pringle</span>
-            </div>
-            <div class="tree-person">
-              <img src="images/wedding-party/groomsmen/eddie-migut.webp" alt="Eddie Migut" class="ring-groomsman">
-              <span class="tree-person-name">Eddie Migut</span>
-            </div>
-            <div class="tree-person">
-              <img src="images/wedding-party/groomsmen/ian-porada.webp" alt="Ian Porada" class="ring-groomsman">
-              <span class="tree-person-name">Ian Porada</span>
-            </div>
-            <div class="tree-person">
-              <img src="images/wedding-party/groomsmen/nate-berkebile.webp" alt="Nate Berkebile" class="ring-groomsman">
-              <span class="tree-person-name">Nate Berkebile</span>
-            </div>
+          <div class="family-tree-row groomsmen">
+            <div class="tree-person"><img src="images/wedding-party/groomsmen/tyler-sharpe.webp" alt="Tyler Sharpe" class="ring-groomsman"><span class="tree-person-name">Tyler Sharpe</span><div class="tree-person-role">Best Man</div></div>
+            <div class="tree-person"><img src="images/wedding-party/groomsmen/alex-molnar.webp" alt="Alex Molnar" class="ring-groomsman"><span class="tree-person-name">Alex Molnar</span></div>
+            <div class="tree-person"><img src="images/wedding-party/groomsmen/brosonan-mccray.webp" alt="Brosonan McCray" class="ring-groomsman"><span class="tree-person-name">Brosonan McCray</span></div>
+            <div class="tree-person"><img src="images/wedding-party/groomsmen/ean-pringle.webp" alt="Ean Pringle" class="ring-groomsman"><span class="tree-person-name">Ean Pringle</span></div>
+            <div class="tree-person"><img src="images/wedding-party/groomsmen/eddie-migut.webp" alt="Eddie Migut" class="ring-groomsman"><span class="tree-person-name">Eddie Migut</span></div>
+            <div class="tree-person"><img src="images/wedding-party/groomsmen/ian-porada.webp" alt="Ian Porada" class="ring-groomsman"><span class="tree-person-name">Ian Porada</span></div>
+            <div class="tree-person"><img src="images/wedding-party/groomsmen/nate-berkebile.webp" alt="Nate Berkebile" class="ring-groomsman"><span class="tree-person-name">Nate Berkebile</span></div>
           </div>
         </div>
-        
-        <!-- Bridal Party Section -->
         <div class="family-tree-section-block">
           <div class="family-tree-section-title">Bridal Party</div>
-          <div class="family-tree-row wedding-party-row">
-            <div class="tree-person">
-              <img src="images/wedding-party/bridesmaids/lexi-ferg.webp" alt="Lexi Ferg" class="ring-bridesmaid">
-              <span class="tree-person-name">Lexi Ferg</span>
-              <div class="tree-person-role">Matron of Honor</div>
-            </div>
-            <div class="tree-person">
-              <img src="images/wedding-party/bridesmaids/brinnah-porada.webp" alt="Brinnah Porada" class="ring-bridesmaid">
-              <span class="tree-person-name">Brinnah Porada</span>
-            </div>
-            <div class="tree-person">
-              <img src="images/wedding-party/bridesmaids/caitie-helsel.webp" alt="Caitie Helsel" class="ring-bridesmaid">
-              <span class="tree-person-name">Caitie Helsel</span>
-            </div>
-            <div class="tree-person">
-              <img src="images/wedding-party/bridesmaids/emily-aurandt.webp" alt="Emily Aurandt" class="ring-bridesmaid">
-              <span class="tree-person-name">Emily Aurandt</span>
-            </div>
-            <div class="tree-person">
-              <img src="images/wedding-party/bridesmaids/hannah-porada.webp" alt="Hannah Porada" class="ring-bridesmaid">
-              <span class="tree-person-name">Hannah Porada</span>
-            </div>
-            <div class="tree-person">
-              <img src="images/wedding-party/bridesmaids/maria-mccray.webp" alt="Maria McCray" class="ring-bridesmaid">
-              <span class="tree-person-name">Maria McCray</span>
-              <div class="tree-person-role">Officiant</div>
-            </div>
-            <div class="tree-person">
-              <img src="images/wedding-party/bridesmaids/mic.webp" alt="Mic" class="ring-bridesmaid">
-              <span class="tree-person-name">Micaela Helsel</span>
-            </div>
+          <div class="family-tree-row bridesmaids">
+            <div class="tree-person"><img src="images/wedding-party/bridesmaids/lexi-ferg.webp" alt="Lexi Ferg" class="ring-bridesmaid"><span class="tree-person-name">Lexi Ferg</span><div class="tree-person-role">Matron of Honor</div></div>
+            <div class="tree-person"><img src="images/wedding-party/bridesmaids/brinnah-porada.webp" alt="Brinnah Porada" class="ring-bridesmaid"><span class="tree-person-name">Brinnah Porada</span></div>
+            <div class="tree-person"><img src="images/wedding-party/bridesmaids/caitie-helsel.webp" alt="Caitie Helsel" class="ring-bridesmaid"><span class="tree-person-name">Caitie Helsel</span></div>
+            <div class="tree-person"><img src="images/wedding-party/bridesmaids/emily-aurandt.webp" alt="Emily Aurandt" class="ring-bridesmaid"><span class="tree-person-name">Emily Aurandt</span></div>
+            <div class="tree-person"><img src="images/wedding-party/bridesmaids/hannah-porada.webp" alt="Hannah Porada" class="ring-bridesmaid"><span class="tree-person-name">Hannah Porada</span></div>
+            <div class="tree-person"><img src="images/wedding-party/bridesmaids/maria-mccray.webp" alt="Maria McCray" class="ring-bridesmaid"><span class="tree-person-name">Maria McCray</span><div class="tree-person-role">Officiant</div></div>
+            <div class="tree-person"><img src="images/wedding-party/bridesmaids/mic.webp" alt="Mic" class="ring-bridesmaid"><span class="tree-person-name">Micaela Helsel</span></div>
           </div>
         </div>
-        
       </div>
     </section>
 
     <section id="main-film-section">
       <h2 class="section-title">The Wedding Film</h2>
       <div id="main-film-player-container">
-        <video id="main-film-video" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" poster="images/main-video-cover.jpg" data-setup='{"fluid": true}'>
+        <div id="video-play-overlay"></div>
+        <video id="main-film-video" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" poster="images/main-film-poster.jpg" data-setup='{"fluid": true}'>
           <source src="https://pub-de1431994c6f481dbc54181e6b5462d3.r2.dev/final-wedding-video.mp4" type="video/mp4" />
           <track kind="chapters" src="https://pub-de1431994c6f481dbc54181e6b5462d3.r2.dev/main-film-chapters.vtt" srclang="en" label="Chapters" default>
         </video>
@@ -184,59 +100,47 @@
     <section id="engagement-album" class="album-section">
       <h2 class="section-title">Our Engagement</h2>
       <div class="horizontal-scroll-gallery">
-        <img src="images/engagement/PoradaProposal-4.jpg" alt="Engagement Photo 1" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-6.jpg" alt="Engagement Photo 2" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-11.jpg" alt="Engagement Photo 3" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-28.jpg" alt="Engagement Photo 4" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-29.jpg" alt="Engagement Photo 5" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-31.jpg" alt="Engagement Photo 6" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-36.jpg" alt="Engagement Photo 7" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-40.jpg" alt="Engagement Photo 8" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-58.jpg" alt="Engagement Photo 9" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-62.jpg" alt="Engagement Photo 10" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-67.jpg" alt="Engagement Photo 11" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-75.jpg" alt="Engagement Photo 12" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-78.jpg" alt="Engagement Photo 13" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-146.jpg" alt="Engagement Photo 14" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-150.jpg" alt="Engagement Photo 15" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-156.jpg" alt="Engagement Photo 16" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-181.jpg" alt="Engagement Photo 17" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-198.jpg" alt="Engagement Photo 18" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-309.jpg" alt="Engagement Photo 19" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-310.jpg" alt="Engagement Photo 20" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-316.jpg" alt="Engagement Photo 21" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-318.jpg" alt="Engagement Photo 22" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-320.jpg" alt="Engagement Photo 23" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-359.jpg" alt="Engagement Photo 24" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-375.jpg" alt="Engagement Photo 25" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-421.jpg" alt="Engagement Photo 26" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-458.jpg" alt="Engagement Photo 27" onerror="this.style.display='none'"/>
-        <img src="images/engagement/PoradaProposal-482.jpg" alt="Engagement Photo 28" onerror="this.style.display='none'"/>
+        <img src="images/engagement/PoradaProposal-4.jpg" alt="Engagement 1" onerror="this.style.display='none'"/>
+        <img src="images/engagement/PoradaProposal-6.jpg" alt="Engagement 2" onerror="this.style.display='none'"/>
+        <img src="images/engagement/PoradaProposal-11.jpg" alt="Engagement 3" onerror="this.style.display='none'"/>
+        <img src="images/engagement/PoradaProposal-28.jpg" alt="Engagement 4" onerror="this.style.display='none'"/>
+        <img src="images/engagement/PoradaProposal-29.jpg" alt="Engagement 5" onerror="this.style.display='none'"/>
+        <img src="images/engagement/PoradaProposal-31.jpg" alt="Engagement 6" onerror="this.style.display='none'"/>
+        <img src="images/engagement/PoradaProposal-36.jpg" alt="Engagement 7" onerror="this.style.display='none'"/>
+        <img src="images/engagement/PoradaProposal-40.jpg" alt="Engagement 8" onerror="this.style.display='none'"/>
+        <img src="images/engagement/PoradaProposal-58.jpg" alt="Engagement 9" onerror="this.style.display='none'"/>
+        <img src="images/engagement/PoradaProposal-62.jpg" alt="Engagement 10" onerror="this.style.display='none'"/>
+        <img src="images/engagement/PoradaProposal-67.jpg" alt="Engagement 11" onerror="this.style.display='none'"/>
+        <img src="images/engagement/PoradaProposal-75.jpg" alt="Engagement 12" onerror="this.style.display='none'"/>
       </div>
     </section>
 
     <section id="rings-section" class="album-section">
       <h2 class="section-title">Our Rings</h2>
       <div class="rings-row">
-        <img src="images/rings/PoradaProposal-255.jpg" alt="Ring Photo 1" class="ring-img" onerror="this.style.display='none'"/>
-        <img src="images/rings/PoradaProposal-259.jpg" alt="Ring Photo 2" class="ring-img" onerror="this.style.display='none'"/>
-        <img src="images/rings/PoradaProposal-262.jpg" alt="Ring Photo 3" class="ring-img" onerror="this.style.display='none'"/>
-        <img src="images/rings/PoradaProposal-268.jpg" alt="Ring Photo 4" class="ring-img" onerror="this.style.display='none'"/>
-        <img src="images/rings/PoradaProposal-273.jpg" alt="Ring Photo 5" class="ring-img" onerror="this.style.display='none'"/>
-        <img src="images/rings/PoradaProposal-277.jpg" alt="Ring Photo 6" class="ring-img" onerror="this.style.display='none'"/>
-        <img src="images/rings/PoradaProposal-286.jpg" alt="Ring Photo 7" class="ring-img" onerror="this.style.display='none'"/>
+        <img src="images/rings/PoradaProposal-255.jpg" alt="Ring Detail 1" class="ring-img" onerror="this.style.display='none'"/>
+        <img src="images/rings/PoradaProposal-259.jpg" alt="Ring Detail 2" class="ring-img" onerror="this.style.display='none'"/>
+        <img src="images/rings/PoradaProposal-262.jpg" alt="Ring Detail 3" class="ring-img" onerror="this.style.display='none'"/>
+        <img src="images/rings/PoradaProposal-268.jpg" alt="Ring Detail 4" class="ring-img" onerror="this.style.display='none'"/>
       </div>
     </section>
 
     <section id="shared-album-section" class="album-section">
       <h2 class="section-title">Share Your Photos</h2>
-      <p class="section-subtitle">Help us remember the day! Please upload any photos you've taken.</p>
-      <form id="photo-upload-form">
-        <input type="text" id="photo-name" placeholder="Your Name" required />
-        <input type="file" id="photo-file" accept="image/*" required />
-        <button type="submit">Upload Photo</button>
-      </form>
+      <p class="section-subtitle">Help us remember the day! See photos from our guests below.</p>
+      
+      <!-- Gallery view comes first -->
       <div id="shared-photo-gallery" class="shared-gallery"></div>
+      
+      <!-- Upload form comes after the gallery -->
+      <div class="upload-section">
+        <h3 class="upload-title">Upload Your Photos</h3>
+        <form id="photo-upload-form">
+          <input type="text" id="photo-name" placeholder="Your Name" required />
+          <input type="file" id="photo-file" accept="image/*" required />
+          <button type="submit">Upload Photo</button>
+        </form>
+      </div>
     </section>
 
     <div class="guestbook-map-container">
@@ -283,6 +187,8 @@
       </section>
     </div>
   </main>
+
+  <!-- Footer will be injected after intro ends -->
 
   <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 
@@ -331,6 +237,25 @@
         body.style.overflow = '';
         introActive = false;
         replayBtn.style.display = '';
+        
+        // Create and inject footer when intro ends
+        if (!document.getElementById('site-footer')) {
+          const footer = document.createElement('footer');
+          footer.id = 'site-footer';
+          footer.innerHTML = `
+            <div class="footer-content">
+              <div class="footer-title">The Poradas - established 2025</div>
+              <div class="footer-counter">
+                <div id="visitor-counter">
+                  <span id="total-visitors">0</span> visits
+                </div>
+              </div>
+            </div>
+          `;
+          document.body.appendChild(footer);
+          console.log('[Footer] Footer created and added after intro ended');
+        }
+        
         // Inject main content after intro is done
         if (!document.getElementById('family-tree')) {
           const template = document.getElementById('main-template');

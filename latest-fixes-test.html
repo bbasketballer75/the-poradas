@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wedding Website - Latest Fixes Test</title>
+    <style>
+        body { 
+            font-family: 'Montserrat', Arial, sans-serif; 
+            padding: 20px; 
+            background: #fdfaf6;
+            line-height: 1.6;
+        }
+        .test-section { 
+            margin: 15px 0; 
+            border: 1px solid #b7c9a8; 
+            padding: 20px; 
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .fixed { color: #2d5a2d; font-weight: 600; }
+        .improved { color: #4a7c4a; font-weight: 600; }
+        .demo-box {
+            background: rgba(183, 201, 168, 0.1);
+            border: 2px dashed #b7c9a8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        
+        .spacing-demo {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .section-demo {
+            background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 100%);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #b7c9a8;
+            font-size: 14px;
+        }
+        
+        .grid-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            grid-template-rows: repeat(3, auto);
+            gap: 12px;
+            height: auto;
+            overflow: visible;
+            padding: 15px;
+            background: rgba(253, 250, 246, 0.5);
+            border: 1px solid rgba(183, 201, 168, 0.3);
+            border-radius: 8px;
+        }
+        
+        .grid-item {
+            background: white;
+            border-radius: 6px;
+            padding: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-size: 12px;
+        }
+        
+        .music-demo {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .music-state {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+            min-width: 120px;
+        }
+        
+        .music-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px auto;
+            font-size: 24px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            animation: musicPulse 2s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        
+        .music-button.hidden {
+            width: 20px;
+            height: 20px;
+            opacity: 0.3;
+            transform: scale(0.4);
+        }
+        
+        .music-button.hidden:hover {
+            width: 50px;
+            height: 50px;
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        @keyframes musicPulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+        
+        .arrow-demo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        
+        .arrow-btn {
+            background: linear-gradient(135deg, #b7c9a8 0%, #8fa382 100%);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: all 0.2s ease;
+        }
+        
+        .arrow-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <h1>🎉 Wedding Website - Latest Improvements</h1>
+    
+    <div class="test-section">
+        <h2>📸 Shared Media Section - No Scrollbar</h2>
+        <p class="fixed">✅ Fixed: Removed scrollbar - all 3 rows now visible without scrolling</p>
+        <p class="fixed">✅ Fixed: Grid layout shows exactly 3 rows at all times</p>
+        <p class="improved">🔧 Improved: Arrow navigation still available for horizontal scrolling</p>
+        <p class="improved">🔧 Improved: Auto-expanding height to accommodate more photos</p>
+        
+        <div class="demo-box">
+            <strong>3-Row Grid - No Scrollbar Demo:</strong>
+            <div class="arrow-demo">
+                <button class="arrow-btn">❮</button>
+                <span style="font-weight: 600; color: #4a7c4a;">Gallery with Arrow Navigation</span>
+                <button class="arrow-btn">❯</button>
+            </div>
+            <div class="grid-demo">
+                <div class="grid-item">Photo 1<br>👤 User A</div>
+                <div class="grid-item">Photo 2<br>👤 User B</div>
+                <div class="grid-item">Photo 3<br>👤 User C</div>
+                <div class="grid-item">Photo 4<br>👤 User D</div>
+                <div class="grid-item">Photo 5<br>👤 User E</div>
+                <div class="grid-item">Photo 6<br>👤 User F</div>
+                <div class="grid-item">Photo 7<br>👤 User G</div>
+                <div class="grid-item">Photo 8<br>👤 User H</div>
+                <div class="grid-item">Photo 9<br>👤 User I</div>
+            </div>
+            <small><strong>Grid Properties:</strong> grid-template-rows: repeat(3, auto), overflow: visible</small>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>📏 Reduced Section Spacing</h2>
+        <p class="fixed">✅ Fixed: Reduced section padding from 80px to 40px (50% reduction)</p>
+        <p class="fixed">✅ Fixed: Mobile padding reduced from 60px to 30px</p>
+        <p class="improved">🔧 Improved: Guestbook/Map container gaps reduced by 50%</p>
+        <p class="improved">🔧 Improved: Less dead space between all sections</p>
+        
+        <div class="demo-box">
+            <strong>Spacing Comparison:</strong>
+            <div class="spacing-demo">
+                <div class="section-demo">
+                    <strong>Before:</strong> padding: 80px 20px → <strong>After:</strong> padding: 40px 20px<br>
+                    <small>50% reduction in vertical spacing</small>
+                </div>
+                <div class="section-demo">
+                    <strong>Mobile Before:</strong> padding: 60px 15px → <strong>After:</strong> padding: 30px 15px<br>
+                    <small>50% reduction in mobile spacing</small>
+                </div>
+                <div class="section-demo">
+                    <strong>Map/Guestbook Gap:</strong> 60px → 30px (Desktop), 40px → 20px (Tablet)<br>
+                    <small>Tighter layout with better content density</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>🎵 Smart Music Player Auto-Hide</h2>
+        <p class="fixed">✅ Fixed: Music player auto-hides after 10 seconds when minimized</p>
+        <p class="fixed">✅ Fixed: Shows on hover or click when hidden</p>
+        <p class="improved">🔧 Improved: Smooth transitions with scale and opacity effects</p>
+        <p class="improved">🔧 Improved: Resets hide timer on interaction</p>
+        
+        <div class="demo-box">
+            <strong>Music Player States Demo:</strong>
+            <div class="music-demo">
+                <div class="music-state">
+                    <div class="music-button">🎵</div>
+                    <strong>Normal</strong><br>
+                    <small>50px size, full opacity</small>
+                </div>
+                <div class="music-state">
+                    <div class="music-button hidden">🎵</div>
+                    <strong>Hidden</strong><br>
+                    <small>20px size, 30% opacity</small>
+                </div>
+                <div class="music-state">
+                    <strong>Behavior:</strong><br>
+                    <small>• Auto-hide after 10s<br>• Show on hover/click<br>• Reset timer on interaction</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>🔧 Technical Implementation</h2>
+        <h3>Shared Media Grid:</h3>
+        <ul>
+            <li><strong>Layout:</strong> <code>grid-template-rows: repeat(3, auto)</code></li>
+            <li><strong>Overflow:</strong> <code>overflow: visible</code> (no scrollbar)</li>
+            <li><strong>Height:</strong> <code>height: auto</code> (expands as needed)</li>
+            <li><strong>Navigation:</strong> Arrow buttons for horizontal scrolling</li>
+        </ul>
+        
+        <h3>Section Spacing Reductions:</h3>
+        <ul>
+            <li><strong>Main sections:</strong> 80px → 40px padding (50% reduction)</li>
+            <li><strong>Mobile sections:</strong> 60px → 30px padding (50% reduction)</li>
+            <li><strong>Desktop gap:</strong> 60px → 30px (50% reduction)</li>
+            <li><strong>Tablet gap:</strong> 40px → 20px (50% reduction)</li>
+        </ul>
+        
+        <h3>Music Player Auto-Hide:</h3>
+        <ul>
+            <li><strong>Hide trigger:</strong> 10 seconds after minimizing</li>
+            <li><strong>Hidden state:</strong> scale(0.4), opacity: 0.3, 20px size</li>
+            <li><strong>Show triggers:</strong> hover, click, focus events</li>
+            <li><strong>Timer reset:</strong> On any interaction or mouse events</li>
+        </ul>
+    </div>
+    
+    <div class="test-section">
+        <h2>🚀 Ready to Test</h2>
+        <p>All improvements have been implemented:</p>
+        <ol>
+            <li><strong>Shared Media:</strong> No scrollbar, 3 rows always visible, arrow navigation</li>
+            <li><strong>Spacing:</strong> 50% reduction in section padding and gaps</li>
+            <li><strong>Music Player:</strong> Smart auto-hide after 10 seconds with hover/click show</li>
+        </ol>
+        <p><a href="index.html" style="background: #b7c9a8; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 600;">← Test the Wedding Website</a></p>
+        
+        <div style="margin-top: 20px; padding: 15px; background: rgba(201, 169, 114, 0.1); border-radius: 8px; border-left: 4px solid #c9a972;">
+            <strong>🎯 Test Instructions:</strong><br>
+            <small>
+            1. Scroll to Shared Photos section - verify no scrollbar and all content visible<br>
+            2. Use arrow buttons to navigate through photos horizontally<br>
+            3. Notice reduced spacing between all sections<br>
+            4. Wait for music player to minimize, then hide after 10 seconds<br>
+            5. Hover over hidden music player to make it reappear
+            </small>
+        </div>
+    </div>
+</body>
+</html>

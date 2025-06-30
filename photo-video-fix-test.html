@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo & Video Fix Test - The Poradas</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { 
+      margin: 0; 
+      padding: 20px; 
+      font-family: 'Montserrat', sans-serif; 
+      background: var(--offwhite, #fdfaf6); 
+    }
+    .test-section { 
+      margin: 40px 0; 
+      padding: 20px; 
+      border: 2px solid var(--sage-green, #b7c9a8); 
+      border-radius: 12px; 
+      background: white; 
+    }
+    .test-title { 
+      font-size: 1.5rem; 
+      font-weight: bold; 
+      margin-bottom: 15px; 
+      color: var(--sage-green-dark, #8fa382); 
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align: center; color: var(--gold, #c9a972);">🔧 Photo & Video Fix Test</h1>
+  
+  <!-- Video Overlay Test -->
+  <div class="test-section">
+    <div class="test-title">🎬 Video Overlay - Fixed</div>
+    <section id="main-film-section">
+      <h2 class="section-title">The Wedding Film</h2>
+      <div id="main-film-player-container">
+        <div id="video-play-overlay"></div>
+        <video id="main-film-video" controls style="width: 100%; height: 400px; background: #ddd; border-radius: 12px;">
+          <source src="https://pub-de1431994c6f481dbc54181e6b5462d3.r2.dev/final-wedding-video.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </section>
+  </div>
+
+  <!-- Engagement Photos Test -->
+  <div class="test-section">
+    <div class="test-title">💍 Engagement Photos - Fixed Paths</div>
+    <section class="album-section">
+      <h2 class="section-title">Our Engagement</h2>
+      <div class="horizontal-scroll-gallery">
+        <img src="images/engagement/PoradaProposal-4.jpg" alt="Engagement 1" onerror="this.style.backgroundColor='#f0f0f0'; this.style.minHeight='350px'; this.alt='Engagement Photo'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='📸 Engagement Photo'"/>
+        <img src="images/engagement/PoradaProposal-6.jpg" alt="Engagement 2" onerror="this.style.backgroundColor='#f0f0f0'; this.style.minHeight='350px'; this.alt='Engagement Photo'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='📸 Engagement Photo'"/>
+        <img src="images/engagement/PoradaProposal-11.jpg" alt="Engagement 3" onerror="this.style.backgroundColor='#f0f0f0'; this.style.minHeight='350px'; this.alt='Engagement Photo'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='📸 Engagement Photo'"/>
+        <img src="images/engagement/PoradaProposal-28.jpg" alt="Engagement 4" onerror="this.style.backgroundColor='#f0f0f0'; this.style.minHeight='350px'; this.alt='Engagement Photo'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='📸 Engagement Photo'"/>
+      </div>
+    </section>
+  </div>
+
+  <!-- Ring Photos Test -->
+  <div class="test-section">
+    <div class="test-title">💎 Ring Photos - Fixed Paths & 2-Column Grid</div>
+    <section class="album-section">
+      <h2 class="section-title">Our Rings</h2>
+      <div class="rings-row">
+        <img src="images/rings/PoradaProposal-255.jpg" alt="Austin's Ring" class="ring-img" onerror="this.style.backgroundColor='#f0f0f0'; this.style.minHeight='300px'; this.alt='Austin Ring'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='💍 Austin Ring'"/>
+        <img src="images/rings/PoradaProposal-259.jpg" alt="Jordyn's Ring" class="ring-img" onerror="this.style.backgroundColor='#f0f0f0'; this.style.minHeight='300px'; this.alt='Jordyn Ring'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='💍 Jordyn Ring'"/>
+      </div>
+    </section>
+  </div>
+
+  <div style="text-align: center; margin: 40px 0; padding: 20px; background: var(--gold, #c9a972); color: white; border-radius: 12px;">
+    <h2 style="margin: 0;">✅ Photo & Video Issues Fixed</h2>
+    <p style="margin: 10px 0 0 0; opacity: 0.9;">Video overlay restored • Engagement photos using correct filenames • Ring photos using correct filenames • Play button added to video overlay</p>
+  </div>
+
+  <script>
+    // Test video overlay functionality
+    const videoOverlay = document.getElementById('video-play-overlay');
+    const video = document.getElementById('main-film-video');
+    
+    if (videoOverlay && video) {
+      videoOverlay.addEventListener('click', () => {
+        console.log('🎬 Video overlay clicked');
+        videoOverlay.style.display = 'none';
+        video.play().catch(e => console.log('Video play failed:', e));
+      });
+      console.log('🎬 Video overlay click handler added');
+    }
+    
+    // Check if images are loading
+    const images = document.querySelectorAll('img');
+    let loadedCount = 0;
+    images.forEach((img, index) => {
+      img.onload = () => {
+        loadedCount++;
+        console.log(`📸 Image ${index + 1} loaded successfully`);
+      };
+      img.onerror = () => {
+        console.log(`❌ Image ${index + 1} failed to load: ${img.src}`);
+      };
+    });
+    
+    setTimeout(() => {
+      console.log(`📊 ${loadedCount} of ${images.length} images loaded successfully`);
+    }, 3000);
+  </script>
+</body>
+</html>
