@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@400;600&display=swap');
 /* --- Elegant Wedding Website Styling by Gemini --- */
 #intro-section {
@@ -136,22 +135,158 @@ body.mobile-portrait-active #location-block-overlay { display: none; }
 .wedding-family-tree { background: linear-gradient(160deg, var(--offwhite) 60%, #fdf0f0 100%); }
 .family-tree-section-title {
   font-family: 'Cormorant Garamond', serif; font-size: 2.8rem;
-  color: var(--gold); text-align: center; margin-bottom: 40px; font-weight: 600;
+  color: var(--gold); text-align: center; margin-bottom: 50px; font-weight: 600;
 }
-.family-tree-rows { display: flex; flex-direction: column; gap: 40px; align-items: center; max-width: 1400px; margin: 0 auto; }
-.family-tree-row { display: flex; gap: 30px; justify-content: center; align-items: flex-start; flex-wrap: wrap; }
-.tree-person { display: flex; flex-direction: column; align-items: center; text-align: center; width: 160px; }
+
+/* Main couple layout - larger and centered */
+.family-tree-rows { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 50px; 
+  align-items: center; 
+  max-width: 1400px; 
+  margin: 0 auto; 
+}
+
+.family-tree-row { 
+  display: flex; 
+  gap: 40px; 
+  justify-content: center; 
+  align-items: flex-start; /* Changed from flex-end to flex-start for consistent image alignment */
+  flex-wrap: wrap; 
+}
+
+/* Couple row - special styling for Austin & Jordyn */
+.couple-row {
+  margin-bottom: 20px;
+}
+
+.couple-row .tree-person {
+  width: 220px; /* Larger for the couple */
+  justify-content: flex-start; /* Consistent alignment */
+}
+
+.couple-row .tree-person img {
+  width: 200px; /* Significantly larger */
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* Ensure perfect alignment */
+  display: block;
+  flex-shrink: 0;
+}
+
+.couple-row .tree-person-name {
+  font-size: clamp(1.4rem, 3vw, 1.8rem); /* Larger font for couple */
+  margin-top: 20px;
+}
+
+/* Parents row - flexible grouping */
+.parents-row {
+  display: flex;
+  gap: 60px;
+  justify-content: center;
+  align-items: flex-start; /* Changed from flex-end */
+  flex-wrap: wrap;
+}
+
+.parent-group {
+  display: flex;
+  gap: 25px;
+  align-items: flex-start; /* Changed from flex-end */
+}
+
+/* Wedding party rows */
+.wedding-party-row {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  align-items: flex-start; /* Changed from flex-end */
+  flex-wrap: wrap;
+  max-width: 1200px;
+}
+
+/* Standard tree person styling */
+.tree-person { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  text-align: center; 
+  width: 180px; /* Increased from 160px */
+  margin-bottom: 10px;
+  /* Ensure consistent layout structure */
+  justify-content: flex-start;
+}
+
 .tree-person img {
-  border-radius: 50%; width: 150px; height: 150px; object-fit: cover;
+  border-radius: 50%; 
+  width: 170px; /* Increased from 150px */
+  height: 170px; /* Increased from 150px */
+  object-fit: cover;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* Ensure all images align perfectly by fixing the container height */
+  display: block;
+  flex-shrink: 0; /* Prevent the image from shrinking */
 }
-.tree-person:hover img { transform: scale(1.1) rotate(-4deg); }
+
+.tree-person:hover img { 
+  transform: scale(1.08) rotate(-3deg); 
+}
+
 .tree-person-name {
-  font-family: 'Playfair Display', serif; font-size: 1.3rem;
-  color: var(--text-dark); font-weight: 700; margin-top: 15px;
+  font-family: 'Playfair Display', serif; 
+  font-size: clamp(1rem, 2.5vw, 1.4rem); /* Auto-sizing font */
+  color: var(--text-dark); 
+  font-weight: 700; 
+  margin-top: 15px;
+  line-height: 1.1;
+  min-height: 1.5em; /* Increased min-height for consistency */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap; /* Force single line */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 5px; /* Small padding for better readability */
 }
-.tree-person-role { font-family: 'Montserrat', sans-serif; font-size: 1rem; color: var(--gold); font-style: italic; }
+
+/* Responsive font sizing for different screen sizes */
+@media (max-width: 1200px) {
+  .tree-person-name {
+    font-size: clamp(0.9rem, 2.2vw, 1.25rem);
+  }
+}
+
+@media (max-width: 900px) {
+  .tree-person-name {
+    font-size: clamp(0.85rem, 2vw, 1.15rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .tree-person-name {
+    font-size: clamp(0.8rem, 1.8vw, 1.05rem);
+  }
+}
+
+.tree-person-role { 
+  font-family: 'Montserrat', sans-serif; 
+  font-size: clamp(0.75rem, 1.5vw, 0.95rem); /* Auto-sizing for roles */
+  color: var(--gold); 
+  font-style: italic; 
+  margin-top: 5px;
+  line-height: 1.1;
+  min-height: 1.2em; /* Consistent min-height */
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 /* Custom Ring Colors */
 .ring-couple { border: 6px solid var(--sage-green) !important; }
@@ -200,14 +335,165 @@ button[type="submit"]:hover { background: var(--gold); transform: translateY(-2p
 }
 .gallery-item-name { font-size: 0.95rem; color: var(--text-light); margin-top: 8px; font-style: italic; }
 
-/* Guestbook & Map Container */
-.guestbook-map-container { display: grid; grid-template-columns: 1fr; gap: 0; max-width: 1400px; margin: 0 auto; }
-.guestbook-map-container .album-section { padding-top: 40px; padding-bottom: 40px; }
-#guestbook-messages { width: 100%; max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
-.guestbook-message { background: white; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); padding: 20px 25px; border-left: 5px solid var(--gold); }
-.guestbook-name { font-weight: 700; color: var(--text-dark); margin-bottom: 8px; font-family: 'Playfair Display', serif; font-size: 1.2rem; }
-#guest-map { width: 100%; height: 500px; border-radius: 12px; overflow: hidden; border: 1px solid #eee; }
-#manual-pin-area { text-align: center; margin-top: 18px; display: none; }
+/* Guestbook & Map Container - Side by Side Layout */
+.guestbook-map-container { 
+  display: grid; 
+  grid-template-columns: 1fr; 
+  gap: 0; 
+  max-width: 1400px; 
+  margin: 0 auto; 
+  padding: 40px 20px;
+}
+
+/* Desktop side-by-side layout */
+@media (min-width: 1024px) {
+  .guestbook-map-container {
+    grid-template-columns: 1fr 1.2fr; /* Guestbook smaller, map larger */
+    gap: 60px;
+    align-items: start;
+  }
+}
+
+/* Tablet layout */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .guestbook-map-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.guestbook-map-container .album-section { 
+  padding-top: 0; 
+  padding-bottom: 0; 
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Guestbook Styling */
+#guestbook-section {
+  background: white;
+  border-radius: 16px;
+  padding: 40px 30px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  height: fit-content;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+#guestbook-messages { 
+  width: 100%; 
+  max-width: none; 
+  margin: 0; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 20px; 
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.guestbook-message { 
+  background: #fafafa; 
+  border-radius: 12px; 
+  box-shadow: 0 3px 15px rgba(0,0,0,0.05); 
+  padding: 20px 25px; 
+  border-left: 4px solid var(--sage-green); 
+  transition: all 0.3s ease;
+}
+
+.guestbook-message:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.guestbook-name { 
+  font-weight: 700; 
+  color: var(--text-dark); 
+  margin-bottom: 8px; 
+  font-family: 'Playfair Display', serif; 
+  font-size: 1.1rem; 
+}
+
+/* Map Styling */
+#map-section {
+  background: white;
+  border-radius: 16px;
+  padding: 40px 30px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+#guest-map {
+  width: 100% !important;
+  min-height: 400px !important;
+  height: 500px !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  border: 2px solid var(--sage-green) !important;
+  background: #f0f8f0 !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: relative !important;
+  margin-top: 20px !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1) !important;
+}
+
+/* Responsive map sizing */
+@media (max-width: 768px) {
+  #guest-map {
+    min-height: 300px !important;
+    height: 350px !important;
+  }
+  
+  #guestbook-section,
+  #map-section {
+    padding: 30px 20px;
+  }
+}
+
+#manual-pin-area {
+  text-align: center;
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(183, 201, 168, 0.1);
+  border-radius: 8px;
+  border: 1px dashed var(--sage-green);
+}
+
+#manual-pin-btn {
+  background: var(--sage-green);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 8px;
+}
+
+#manual-pin-btn:hover {
+  background: var(--sage-green-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(143, 163, 130, 0.3);
+}
+
+/* Ensure Leaflet map interactions work properly */
+.leaflet-container {
+  cursor: grab !important;
+}
+.leaflet-container:active {
+  cursor: grabbing !important;
+}
+.leaflet-dragging .leaflet-container {
+  cursor: grabbing !important;
+}
+.leaflet-control-container {
+  pointer-events: auto !important;
+}
+.leaflet-control {
+  pointer-events: auto !important;
+}
 
 /* --- Video.js Custom Skin --- */
 .video-js {
@@ -243,16 +529,123 @@ button[type="submit"]:hover { background: var(--gold); transform: translateY(-2p
     padding: 0 40px 80px 40px;
   }
 }
-@media (max-width: 900px) {
-  .tree-person { width: 140px; }
-  .tree-person img { width: 120px; height: 120px; }
-  .horizontal-scroll-gallery img { height: 280px; }
+
+/* Family Tree Responsive Design */
+@media (max-width: 1200px) {
+  .parents-row {
+    gap: 40px;
+  }
+  
+  .couple-row .tree-person {
+    width: 200px;
+  }
+  
+  .couple-row .tree-person img {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .tree-person {
+    width: 170px;
+  }
+  
+  .tree-person img {
+    width: 160px;
+    height: 160px;
+  }
 }
+
+@media (max-width: 900px) {
+  .tree-person { 
+    width: 160px; 
+  }
+  
+  .tree-person img { 
+    width: 150px; 
+    height: 150px; 
+  }
+  
+  .couple-row .tree-person {
+    width: 180px;
+  }
+  
+  .couple-row .tree-person img {
+    width: 170px;
+    height: 170px;
+  }
+  
+  .couple-row .tree-person-name {
+    font-size: clamp(1.3rem, 2.8vw, 1.6rem);
+  }
+  
+  .parents-row {
+    gap: 30px;
+  }
+  
+  .parent-group {
+    gap: 20px;
+  }
+  
+  .wedding-party-row {
+    gap: 20px;
+  }
+  
+  .horizontal-scroll-gallery img { 
+    height: 280px; 
+  }
+}
+
 @media (max-width: 600px) {
-  .album-section, .wedding-family-tree, #main-film-section { padding: 60px 15px; }
-  .tree-person { width: 110px; }
-  .tree-person img { width: 100px; height: 100px; }
-  .family-tree-row { gap: 15px; }
-  .tree-person-name { font-size: 1.1rem; }
-  .horizontal-scroll-gallery img { height: 220px; }
+  .album-section, .wedding-family-tree, #main-film-section { 
+    padding: 60px 15px; 
+  }
+  
+  .tree-person { 
+    width: 140px; 
+  }
+  
+  .tree-person img { 
+    width: 130px; 
+    height: 130px; 
+  }
+  
+  .couple-row .tree-person {
+    width: 160px;
+  }
+  
+  .couple-row .tree-person img {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .couple-row .tree-person-name {
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  }
+  
+  .family-tree-row { 
+    gap: 15px; 
+  }
+  
+  .parents-row {
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .parent-group {
+    gap: 15px;
+    align-items: flex-start; /* Maintain consistent alignment */
+  }
+  
+  .wedding-party-row {
+    gap: 15px;
+  }
+  
+  .horizontal-scroll-gallery img { 
+    height: 220px; 
+  }
+  
+  .family-tree-rows {
+    gap: 40px;
+  }
 }
