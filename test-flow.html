@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Music Player Flow</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            background: #1a1a1a; 
+            color: #fff;
+        }
+        .test-section { 
+            margin: 20px 0; 
+            padding: 15px; 
+            border: 1px solid #333; 
+            border-radius: 8px;
+        }
+        .button { 
+            background: #d4af37; 
+            color: #000; 
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            margin: 5px;
+        }
+        .status { 
+            font-weight: bold; 
+            color: #d4af37;
+        }
+    </style>
+</head>
+<body>
+    <h1>Wedding Site - Music Player Flow Test</h1>
+    
+    <div class="test-section">
+        <h2>Current Status:</h2>
+        <p id="music-player-status" class="status">Checking...</p>
+        <p id="continue-button-status" class="status">Checking...</p>
+    </div>
+    
+    <div class="test-section">
+        <h2>Actions:</h2>
+        <button class="button" onclick="testMusicPlayerExists()">Check Music Player</button>
+        <button class="button" onclick="testContinueButton()">Test Continue Button</button>
+        <button class="button" onclick="openMainSite()">Open Main Site</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>Console Output:</h2>
+        <div id="console-output" style="background: #000; padding: 10px; font-family: monospace; min-height: 200px; border-radius: 5px;"></div>
+    </div>
+
+    <script>
+        // Capture console logs
+        const originalLog = console.log;
+        const outputDiv = document.getElementById('console-output');
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            const logEntry = document.createElement('div');
+            logEntry.textContent = args.join(' ');
+            logEntry.style.color = '#d4af37';
+            logEntry.style.marginBottom = '5px';
+            outputDiv.appendChild(logEntry);
+            outputDiv.scrollTop = outputDiv.scrollHeight;
+        };
+        
+        function testMusicPlayerExists() {
+            const musicPlayer = document.getElementById('background-music-player');
+            const status = document.getElementById('music-player-status');
+            
+            if (musicPlayer) {
+                status.textContent = '❌ Music Player FOUND (should not exist yet!)';
+                status.style.color = '#ff4444';
+                console.log('ERROR: Music player exists before continue button click');
+            } else {
+                status.textContent = '✅ Music Player NOT FOUND (correct!)';
+                status.style.color = '#44ff44';
+                console.log('GOOD: Music player does not exist yet');
+            }
+        }
+        
+        function testContinueButton() {
+            // Open main site in iframe to test
+            const iframe = document.createElement('iframe');
+            iframe.src = 'index.html';
+            iframe.style.width = '300px';
+            iframe.style.height = '200px';
+            iframe.style.border = '1px solid #333';
+            document.body.appendChild(iframe);
+            
+            console.log('Opened main site in iframe for testing');
+        }
+        
+        function openMainSite() {
+            window.open('index.html', '_blank');
+        }
+        
+        // Initial check
+        setTimeout(testMusicPlayerExists, 500);
+        
+        // Set up periodic checks
+        setInterval(() => {
+            testMusicPlayerExists();
+        }, 2000);
+    </script>
+</body>
+</html>

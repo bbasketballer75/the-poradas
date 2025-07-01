@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>The Poradas Wedding</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
   <meta http-equiv="Permissions-Policy" content="geolocation=(self)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -32,11 +34,11 @@
 <body>
 
   <section id="intro-section" style="width:100vw;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;position:relative;z-index:1;">
-    <video id="intro-video" autoplay muted playsinline preload="auto" style="width:100vw;height:100vh;object-fit:contain;background:#fff;display:block;">
+    <video id="intro-video" autoplay muted playsinline webkit-playsinline preload="auto" style="width:100vw;height:100vh;object-fit:contain;background:#fff;display:block;">
       <source src="video/intro.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-    <button id="skip-intro" type="button" style="pointer-events:auto;opacity:0;transition:opacity 0.5s;position:absolute;bottom:24px;right:24px;z-index:2;padding:0.3em 1em;line-height:1.2;font-size:0.95em;background:rgba(255,255,255,0.7);border:1px solid #ccc;border-radius:18px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);height:auto;min-height:unset;">Skip Intro</button>
+    <button id="skip-intro" type="button">Skip Intro</button>
     <button id="replay-intro" type="button" style="position:absolute;top:24px;right:24px;z-index:2;padding:0.3em 1em;line-height:1.2;font-size:0.95em;background:rgba(255,255,255,0.7);border:1px solid #ccc;border-radius:18px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);">Replay Intro</button>
   </section>
 
@@ -155,9 +157,9 @@
       <h2 class="section-title">The Wedding Film</h2>
       <div id="main-film-player-container">
         <div id="video-play-overlay"></div>
-        <video id="main-film-video" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" poster="images/main-film-poster.jpg" data-setup='{"fluid": true}'>
+        <video id="main-film-video" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" poster="images/main-video-cover.jpg" data-setup='{"fluid": true}'>
           <source src="https://pub-de1431994c6f481dbc54181e6b5462d3.r2.dev/final-wedding-video.mp4" type="video/mp4" />
-          <track kind="chapters" src="https://pub-de1431994c6f481dbc54181e6b5462d3.r2.dev/main-film-chapters.vtt" srclang="en" label="Chapters" default>
+          <track kind="chapters" src="video/main-film-chapters.vtt" srclang="en" label="Chapters" default>
         </video>
       </div>
     </section>
@@ -205,14 +207,20 @@
       <p class="section-subtitle">Help us remember the day! See photos from our guests below.</p>
       
       <!-- Gallery view comes first -->
-      <div id="shared-photo-gallery" class="shared-gallery"></div>
+      <div class="shared-gallery-container">
+        <div class="horizontal-scroll-gallery" id="shared-photo-gallery"></div>
+        <div class="gallery-nav">
+          <button class="gallery-nav-btn" id="shared-gallery-prev">◀</button>
+          <button class="gallery-nav-btn" id="shared-gallery-next">▶</button>
+        </div>
+      </div>
       
       <!-- Upload form comes after the gallery -->
       <div class="upload-section">
         <h3 class="upload-title">Upload Your Photos</h3>
         <form id="photo-upload-form">
           <input type="text" id="photo-name" placeholder="Your Name" required />
-          <input type="file" id="photo-file" accept="image/*" required />
+          <input type="file" id="photo-file" accept="image/*,video/*" multiple required />
           <button type="submit">Upload Photo</button>
         </form>
       </div>
